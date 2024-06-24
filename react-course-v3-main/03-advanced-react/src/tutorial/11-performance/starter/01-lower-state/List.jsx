@@ -1,6 +1,10 @@
-import Person from './Person';
+import Person from "./Person";
+import { useState } from "react";
+import { data } from "../../../../data";
 
-const List = ({ people }) => {
+const List = () => {
+  const [people, setPeople] = useState(data);
+
   return (
     <div>
       {people.map((person) => {
