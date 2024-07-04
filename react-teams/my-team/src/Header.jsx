@@ -9,7 +9,8 @@ function Header({ employees, selectedTeam }) {
     <div>
       <h1>Team Member Allocation</h1>
       <h5>
-        {selectedTeam} has <b>{teamMemberCount}</b> Members
+        {selectedTeam} has <b>{teamMemberCount}</b>{" "}
+        {teamMemberCount > 1 ? "Members" : "Member"}
       </h5>
     </div>
   );

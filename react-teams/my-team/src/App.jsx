@@ -4,6 +4,10 @@ import Employees from "./Employees";
 import teamMembers from "./Data";
 import Header from "./Header";
 import Footer from "./Footer";
+import Nav from "./Nav";
+import NotFound from "./NotFound";
+import GroupedTeamMember from "./GroupedTeamMember";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   const [selectedTeam, setTeam] = useState(
@@ -33,16 +37,35 @@ function App() {
     localStorage.setItem("selectedTeam", JSON.stringify(selectedTeam));
   }, [selectedTeam]);
   return (
-    <>
+    <Router>
+      <Nav />
       <Header selectedTeam={selectedTeam} employees={employees} />
-      <Employees
-        selectedTeam={selectedTeam}
-        employees={employees}
-        handleEmployeeCardClick={handleEmployeeCardClick}
-        handleTeamChange={handleTeamChange}
-      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Employees
+              selectedTeam={selectedTeam}
+              employees={employees}
+              handleEmployeeCardClick={handleEmployeeCardClick}
+              handleTeamChange={handleTeamChange}
+            />
+          }
+        ></Route>
+        <Route
+          path="/GroupedTeamMember"
+          element={
+            <GroupedTeamMember
+              selectedTeam={selectedTeam}
+              employees={employees}
+              setTeam={setTeam}
+            />
+          }
+        ></Route>
+        <Route path="*" element={<NotFound />}></Route>
+      </Routes>
       <Footer />
-    </>
+    </Router>
   );
 }
 
