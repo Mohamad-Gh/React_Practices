@@ -4,19 +4,73 @@ import femaleProfile from "./images/femaleProfile.jpg";
 import maleProfile from "./images/maleProfile.jpg";
 
 function Employees() {
+  const [selectedTeam, setTeam] = useState("TeamB");
   const [employees, setEmployees] = useState(teamMembers);
+  const handleEmployeeCardClick = (event) => {
+    const transformedEmployee = employees.map((employee) =>
+      employee.id === parseInt(event.currentTarget.id)
+        ? employee.teamName === selectedTeam
+          ? { ...employee, teamName: "" }
+          : { ...employee, teamName: selectedTeam }
+        : employee
+    );
+    console.log(transformedEmployee);
+    setEmployees(transformedEmployee);
+  };
+
   return (
-    <main>
-      {employees.map((employee) => (
-        <div key={employee.id}>
-          {employee.gender === "male" ? (
-            <img src={maleProfile} />
-          ) : employee.gender === "female" ? (
-            <img src={femaleProfile} />
-          ) : null}
-          <p>{employee.fullName}</p>
+    <main className="container">
+      <div className="row justify-content-center mt-3 mb-3">
+        <div className="col-6">
+          <select
+            className="form-select form-select-lg"
+            value={selectedTeam}
+            onChange={(e) => setTeam(e.target.value)}
+          >
+            <option value={"TeamA"}>TeamA</option>
+            <option value={"TeamB"}>TeamB</option>
+            <option value={"TeamC"}>TeamC</option>
+            <option value={"TeamD"}>TeamD</option>
+          </select>
         </div>
-      ))}
+      </div>
+      <div className="row justify-content-center mt-3 mb-3">
+        <div className="col-8">
+          <div className="card-collection">
+            {employees.map((employee) => (
+              <div
+                key={employee.id}
+                id={employee.id}
+                className={
+                  employee.teamName === selectedTeam
+                    ? "card m-2 standout"
+                    : "card m-2"
+                }
+                style={{ cursor: "pointer" }}
+                onClick={handleEmployeeCardClick}
+              >
+                <img
+                  className="card-img-top"
+                  src={
+                    employee.gender === "male"
+                      ? maleProfile
+                      : employee.gender === "female"
+                      ? femaleProfile
+                      : null
+                  }
+                />
+                <div className="card-body">
+                  <h5 className="card-title">Full Name: {employee.fullName}</h5>
+                  <p className="card-text">
+                    <b>Designation :</b> {employee.designation}
+                  </p>
+                  <p>{employee.teamName}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </main>
   );
 }
