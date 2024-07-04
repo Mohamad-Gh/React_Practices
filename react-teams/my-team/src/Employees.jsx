@@ -1,23 +1,13 @@
-import React, { useState } from "react";
-import teamMembers from "./Data";
+import React from "react";
 import femaleProfile from "./images/femaleProfile.jpg";
 import maleProfile from "./images/maleProfile.jpg";
 
-function Employees() {
-  const [selectedTeam, setTeam] = useState("TeamB");
-  const [employees, setEmployees] = useState(teamMembers);
-  const handleEmployeeCardClick = (event) => {
-    const transformedEmployee = employees.map((employee) =>
-      employee.id === parseInt(event.currentTarget.id)
-        ? employee.teamName === selectedTeam
-          ? { ...employee, teamName: "" }
-          : { ...employee, teamName: selectedTeam }
-        : employee
-    );
-    console.log(transformedEmployee);
-    setEmployees(transformedEmployee);
-  };
-
+function Employees({
+  selectedTeam,
+  employees,
+  handleEmployeeCardClick,
+  handleTeamChange,
+}) {
   return (
     <main className="container">
       <div className="row justify-content-center mt-3 mb-3">
@@ -25,7 +15,7 @@ function Employees() {
           <select
             className="form-select form-select-lg"
             value={selectedTeam}
-            onChange={(e) => setTeam(e.target.value)}
+            onChange={handleTeamChange}
           >
             <option value={"TeamA"}>TeamA</option>
             <option value={"TeamB"}>TeamB</option>
