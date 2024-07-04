@@ -1,7 +1,7 @@
 import React from "react";
 import femaleProfile from "./images/femaleProfile.jpg";
 import maleProfile from "./images/maleProfile.jpg";
-
+import Team from "./Team";
 function Employees({
   selectedTeam,
   employees,
@@ -12,16 +12,10 @@ function Employees({
     <main className="container">
       <div className="row justify-content-center mt-3 mb-3">
         <div className="col-6">
-          <select
-            className="form-select form-select-lg"
-            value={selectedTeam}
-            onChange={handleTeamChange}
-          >
-            <option value={"TeamA"}>TeamA</option>
-            <option value={"TeamB"}>TeamB</option>
-            <option value={"TeamC"}>TeamC</option>
-            <option value={"TeamD"}>TeamD</option>
-          </select>
+          <Team
+            selectedTeam={selectedTeam}
+            handleTeamChange={handleTeamChange}
+          />
         </div>
       </div>
       <div className="row justify-content-center mt-3 mb-3">
