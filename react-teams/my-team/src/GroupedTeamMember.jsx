@@ -65,12 +65,10 @@ function GroupedTeamMember({ employees, selectedTeam, setTeam }) {
             key={item.team}
             className="card mt-2"
             style={{ cursor: "pointer" }}
+            onClick={handleTeamClick}
+            id={item.team}
           >
-            <h4
-              id={item.team}
-              className="card-header text-secondary bg-white"
-              onClick={handleTeamClick}
-            >
+            <h4 className="card-header text-secondary bg-white">
               Team Name: {item.team}
             </h4>
             <div
