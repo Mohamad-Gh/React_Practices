@@ -1,90 +1,7 @@
 import React, { useState } from "react";
-const teamMembers = [
-  {
-    id: 1,
-    fullName: "Bob Jones",
-    designation: "JavaScript Developer",
-    gender: "male",
-    teamName: "TeamA",
-  },
-  {
-    id: 2,
-    fullName: "Jill Bailey",
-    designation: "Node Developer",
-    gender: "female",
-    teamName: "TeamA",
-  },
-  {
-    id: 3,
-    fullName: "Gail Shepherd",
-    designation: "Java Developer",
-    gender: "female",
-    teamName: "TeamA",
-  },
-  {
-    id: 4,
-    fullName: "Sam Reynolds",
-    designation: "React Developer",
-    gender: "male",
-    teamName: "TeamB",
-  },
-  {
-    id: 5,
-    fullName: "David Henry",
-    designation: "DotNet Developer",
-    gender: "male",
-    teamName: "TeamB",
-  },
-  {
-    id: 6,
-    fullName: "Sarah Blake",
-    designation: "SQL Server DBA",
-    gender: "female",
-    teamName: "TeamB",
-  },
-  {
-    id: 7,
-    fullName: "James Bennet",
-    designation: "Angular Developer",
-    gender: "male",
-    teamName: "TeamC",
-  },
-  {
-    id: 8,
-    fullName: "Jessica Faye",
-    designation: "API Developer",
-    gender: "female",
-    teamName: "TeamC",
-  },
-  {
-    id: 9,
-    fullName: "Lita Stone",
-    designation: "C++ Developer",
-    gender: "female",
-    teamName: "TeamC",
-  },
-  {
-    id: 10,
-    fullName: "Daniel Young",
-    designation: "Python Developer",
-    gender: "male",
-    teamName: "TeamD",
-  },
-  {
-    id: 11,
-    fullName: "Adrian Jacobs",
-    designation: "Vue Developer",
-    gender: "male",
-    teamName: "TeamD",
-  },
-  {
-    id: 12,
-    fullName: "Devin Monroe",
-    designation: "Graphic Designer",
-    gender: "male",
-    teamName: "TeamD",
-  },
-];
+import teamMembers from "./Data";
+import femaleProfile from "./images/femaleProfile.jpg";
+import maleProfile from "./images/maleProfile.jpg";
 
 function Employees() {
   const [employees, setEmployees] = useState(teamMembers);
@@ -92,8 +9,12 @@ function Employees() {
     <main>
       {employees.map((employee) => (
         <div key={employee.id}>
+          {employee.gender === "male" ? (
+            <img src={maleProfile} />
+          ) : employee.gender === "female" ? (
+            <img src={femaleProfile} />
+          ) : null}
           <p>{employee.fullName}</p>
-          <p>{employee.gender}</p>
         </div>
       ))}
     </main>
