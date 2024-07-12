@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useContext } from "react";
 const AppContext = createContext();
 
 function AppProvider({ children }) {
@@ -6,3 +6,7 @@ function AppProvider({ children }) {
 }
 
 export { AppProvider, AppContext };
+
+export const useGlobalContext = () => {
+  return useContext(AppContext);
+};
