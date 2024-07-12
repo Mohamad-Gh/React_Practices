@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-const AppContext = React.createContext();
+import React, { createContext } from "react";
+const AppContext = createContext();
 
 function AppProvider({ children }) {
   return <AppContext.Provider value={"hello"}>{children}</AppContext.Provider>;
