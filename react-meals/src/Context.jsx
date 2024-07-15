@@ -24,10 +24,10 @@ const AppContext = createContext();
 
 const fetchMeals = async (url) => {
   try {
-    const response = await axios(url);
-    console.log(response);
-  } catch (e) {
-    console.log(e);
+    const { data } = await axios(url);
+    console.log(data);
+  } catch (error) {
+    console.log("error:", error.response);
   }
 };
 function AppProvider({ children }) {
