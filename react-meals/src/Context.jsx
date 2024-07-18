@@ -38,7 +38,9 @@ function AppProvider({ children }) {
     setLoading(false);
   };
   useEffect(() => {
-    fetchMeals(allMealsUrl + searchTerm);
+    searchTerm === "random"
+      ? fetchMeals(randomMealUrl)
+      : fetchMeals(`${allMealsUrl}${searchTerm}`);
   }, [searchTerm]);
 
   return (

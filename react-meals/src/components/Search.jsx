@@ -13,9 +13,9 @@ function Search() {
     setTerm(text);
     e.preventDefault();
   };
-  // const handleClick = () => {
-  //   setTerm(randomMealUrl);
-  // };
+  const handleClick = () => {
+    setTerm("random");
+  };
   return (
     <header className="search-container">
       <form onSubmit={handleSubmit}>
