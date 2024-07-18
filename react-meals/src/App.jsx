@@ -5,14 +5,17 @@ import Meals from "./components/Meals";
 import Modal from "./components/Modal";
 import Search from "./components/Search";
 
-function App() {
+function App({ handleSubmit, handleChange, handleClick }) {
   return (
     <>
-      <h1>Hello, World</h1>
-      <Search />
-      <Favorites />
+      <Search
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        handleClick={handleClick}
+      />
+      {/* <Favorites /> */}
       <Meals />
-      <Modal />
+      {/* <Modal /> */}
     </>
   );
 }

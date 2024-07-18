@@ -6,8 +6,6 @@ import { AppProvider } from "./Context.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AppProvider>
-      <App />
-    </AppProvider>
+    <AppProvider></AppProvider>
   </React.StrictMode>
 );

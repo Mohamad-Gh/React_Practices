@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useEffect } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
+import App from "./App.jsx";
 
 const allMealsUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 const randomMealUrl = "https://www.themealdb.com/api/json/v1/1/random.php";
@@ -22,19 +23,49 @@ const AppContext = createContext();
 //   }
 // };
 
-const fetchMeals = async (url) => {
-  try {
-    const { data } = await axios(url);
-    console.log(data);
-  } catch (error) {
-    console.log("error:", error.response);
-  }
-};
-function AppProvider({ children }) {
+function AppProvider() {
+  const [isLoading, setLoading] = useState(true);
+  const [meal, setMeal] = useState([]);
+  const [searchTerm, setTerm] = useState(allMealsUrl);
+  const [text, setText] = useState("");
+  const handleChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (text) {
+      setTerm(allMealsUrl + text);
+    } else {
+      setTerm(allMealsUrl);
+    }
+  };
+  const handleClick = () => {
+    setTerm(randomMealUrl);
+  };
+
+  const fetchMeals = async (url) => {
+    setLoading(true);
+    try {
+      const response = await axios(url);
+      response.data.meals ? setMeal(response.data) : setMeal([]);
+    } catch (error) {
+      console.log("error:", error.response);
+    }
+    setLoading(false);
+  };
   useEffect(() => {
-    fetchMeals(allMealsUrl);
-  }, []);
-  return <AppContext.Provider value={"hello"}>{children}</AppContext.Provider>;
+    fetchMeals(searchTerm);
+  }, [searchTerm]);
+  return (
+    <AppContext.Provider value={{ meal, isLoading }}>
+      <App
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        handleClick={handleClick}
+      />
+    </AppContext.Provider>
+  );
 }
 
 export const useGlobalContext = () => {
