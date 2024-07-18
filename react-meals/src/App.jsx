@@ -1,18 +1,14 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Favorites from "./components/Favorites";
 import Meals from "./components/Meals";
 import Modal from "./components/Modal";
 import Search from "./components/Search";
 
-function App({ handleSubmit, handleChange, handleClick }) {
+function App() {
   return (
     <>
-      <Search
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        handleClick={handleClick}
-      />
+      <Search />
       {/* <Favorites /> */}
       <Meals />
       {/* <Modal /> */}

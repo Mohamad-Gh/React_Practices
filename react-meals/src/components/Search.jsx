@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { useGlobalContext } from "../Context";
 
-function Search({ handleSubmit, handleChange, handleClick }) {
-  const { searchTerm } = useGlobalContext;
+function Search() {
+  const [text, setText] = useState("");
+  const { setTerm } = useGlobalContext();
+
+  const handleChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    setTerm(text);
+    e.preventDefault();
+  };
+  // const handleClick = () => {
+  //   setTerm(randomMealUrl);
+  // };
   return (
     <header className="search-container">
       <form onSubmit={handleSubmit}>
@@ -11,7 +24,7 @@ function Search({ handleSubmit, handleChange, handleClick }) {
           type="text"
           placeholder="type favorite meal"
           className="form-input"
-          value={searchTerm}
+          value={text}
         />
         <button type="submit" className="btn">
           search
