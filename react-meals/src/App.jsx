@@ -7,11 +7,11 @@ import Search from "./components/Search";
 import { useGlobalContext } from "./Context";
 
 function App() {
-  const { showModal } = useGlobalContext();
+  const { showModal, favorites } = useGlobalContext();
   return (
     <>
       <Search />
-      <Favorites />
+      {favorites.length > 0 && <Favorites />}
       <Meals />
       {showModal && <Modal />}
     </>

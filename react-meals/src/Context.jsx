@@ -21,6 +21,15 @@ const AppContext = createContext();
 //     console.log(error);
 //   }
 // };
+const getFavoritesFromLocalStorage = () => {
+  let favorites = localStorage.getItem("favorites");
+  if (favorites) {
+    favorites = JSON.parse(localStorage.getItem("favorites"));
+  } else {
+    favorites = [];
+  }
+  return favorites;
+};
 
 function AppProvider({ children }) {
   const [isLoading, setLoading] = useState(true);
@@ -28,26 +37,31 @@ function AppProvider({ children }) {
   const [searchTerm, setTerm] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [selectedMeal, setSelectedMeal] = useState(null);
-  const [favorites, setFavorites] = useState([]);
+
+  const [favorites, setFavorites] = useState(getFavoritesFromLocalStorage());
 
   const addFavorite = (id) => {
-    const newMeal = meal.meals.find((element) => element.idMeal == id);
     const alreadyFavorite = favorites.find((element) => element.idMeal == id);
     if (alreadyFavorite) return;
+    const newMeal = meal.meals.find((element) => element.idMeal == id);
     const updatedFavorite = [...favorites, newMeal];
     setFavorites(updatedFavorite);
-    console.log(updatedFavorite);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorite));
   };
 
   const removeFavorites = (id) => {
-    const updatedFavorites = favorites.filter((meal) => meal.idMeal !== idMeal);
+    const updatedFavorites = favorites.filter((meal) => meal.idMeal !== id);
     setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
   const selectMeal = (idMeal, favoriteMeal) => {
     let newMeal;
-
-    newMeal = meal.meals.find((meal) => meal.idMeal === idMeal);
+    if (favoriteMeal) {
+      newMeal = favorites.find((meal) => meal.idMeal === idMeal);
+    } else {
+      newMeal = meal.meals.find((meal) => meal.idMeal === idMeal);
+    }
     setSelectedMeal(newMeal);
     setShowModal(true);
   };
@@ -92,6 +106,7 @@ function AppProvider({ children }) {
         closeMeal,
         addFavorite,
         favorites,
+        removeFavorites,
       }}
     >
       {children}
