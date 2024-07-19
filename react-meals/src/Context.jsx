@@ -28,6 +28,22 @@ function AppProvider({ children }) {
   const [searchTerm, setTerm] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [selectedMeal, setSelectedMeal] = useState(null);
+  const [favorites, setFavorites] = useState([]);
+
+  const addFavorite = (id) => {
+    const newMeal = meal.meals.find((element) => element.idMeal == id);
+    const alreadyFavorite = favorites.find((element) => element.idMeal == id);
+    if (alreadyFavorite) return;
+    const updatedFavorite = [...favorites, newMeal];
+    setFavorites(updatedFavorite);
+    console.log(updatedFavorite);
+  };
+
+  const removeFavorites = (id) => {
+    const updatedFavorites = favorites.filter((meal) => meal.idMeal !== idMeal);
+    setFavorites(updatedFavorites);
+  };
+
   const selectMeal = (idMeal, favoriteMeal) => {
     let newMeal;
 
@@ -74,6 +90,8 @@ function AppProvider({ children }) {
         selectMeal,
         selectedMeal,
         closeMeal,
+        addFavorite,
+        favorites,
       }}
     >
       {children}

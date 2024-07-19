@@ -3,7 +3,7 @@ import { useGlobalContext } from "../Context";
 import { FaRegThumbsUp } from "react-icons/fa6";
 
 function Meals() {
-  const { meal, isLoading, selectMeal } = useGlobalContext();
+  const { meal, isLoading, selectMeal, addFavorite } = useGlobalContext();
   return isLoading ? (
     <section className="section">
       <h4>Loading ...</h4>
@@ -27,7 +27,7 @@ function Meals() {
             />
             <footer>
               <h5>{title}</h5>
-              <button className="like-btn">
+              <button className="like-btn" onClick={() => addFavorite(idMeal)}>
                 <FaRegThumbsUp />
               </button>
             </footer>

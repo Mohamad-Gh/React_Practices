@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-// import Favorites from "./components/Favorites";
+import Favorites from "./components/Favorites";
 import Meals from "./components/Meals";
 import Modal from "./components/Modal";
 import Search from "./components/Search";
@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <Search />
-      {/* <Favorites /> */}
+      <Favorites />
       <Meals />
       {showModal && <Modal />}
     </>
