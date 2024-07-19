@@ -10,7 +10,7 @@ function Meals() {
     </section>
   ) : meal.length < 1 ? (
     <section className="section">
-      <h4>No Item</h4>
+      <h4>No Item was Founded</h4>
     </section>
   ) : (
     <section className="section-center">

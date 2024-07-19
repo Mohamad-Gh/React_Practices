@@ -3,18 +3,24 @@ import { useGlobalContext } from "../Context";
 
 function Search() {
   const [text, setText] = useState("");
-  const { setTerm } = useGlobalContext();
+  const { setTerm, fetchRandomMeal } = useGlobalContext();
 
   const handleChange = (e) => {
     setText(e.target.value);
   };
 
   const handleSubmit = (e) => {
-    setTerm(text);
     e.preventDefault();
+    if (text) {
+      setTerm(text);
+      setText("");
+    }
   };
-  const handleClick = () => {
-    setTerm("random");
+
+  const handleRandomMeal = () => {
+    setTerm("");
+    setText("");
+    fetchRandomMeal();
   };
   return (
     <header className="search-container">
@@ -29,7 +35,11 @@ function Search() {
         <button type="submit" className="btn">
           search
         </button>
-        <button onClick={handleClick} type="button" className="btn btn-hipster">
+        <button
+          onClick={handleRandomMeal}
+          type="button"
+          className="btn btn-hipster"
+        >
           suprise me !
         </button>
       </form>

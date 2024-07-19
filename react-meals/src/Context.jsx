@@ -37,14 +37,21 @@ function AppProvider({ children }) {
     }
     setLoading(false);
   };
+
+  const fetchRandomMeal = () => {
+    fetchMeals(randomMealUrl);
+  };
   useEffect(() => {
-    searchTerm === "random"
-      ? fetchMeals(randomMealUrl)
-      : fetchMeals(`${allMealsUrl}${searchTerm}`);
+    fetchMeals(`${allMealsUrl}${searchTerm}`);
+  }, []);
+
+  useEffect(() => {
+    if (!searchTerm) return;
+    fetchMeals(`${allMealsUrl}${searchTerm}`);
   }, [searchTerm]);
 
   return (
-    <AppContext.Provider value={{ meal, isLoading, setTerm }}>
+    <AppContext.Provider value={{ meal, isLoading, setTerm, fetchRandomMeal }}>
       {children}
     </AppContext.Provider>
   );
