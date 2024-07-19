@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useGlobalContext } from "../Context";
 import { FaRegThumbsUp } from "react-icons/fa6";
 
 function Meals() {
-  const { meal, isLoading } = useGlobalContext();
+  const { meal, isLoading, selectMeal } = useGlobalContext();
   return isLoading ? (
     <section className="section">
       <h4>Loading ...</h4>
@@ -15,12 +15,16 @@ function Meals() {
   ) : (
     <section className="section-center">
       {meal.meals.map(({ idMeal, strMeal: title, strMealThumb: image }) => {
-        {
-          /* const { idMeal, strMeal: title, strMealThumb: image } = singleMeal; */
-        }
         return (
           <article key={idMeal} className="single-meal">
-            <img src={image} style={{ width: "200px" }} className="img" />
+            <img
+              onClick={() => {
+                selectMeal(idMeal);
+              }}
+              src={image}
+              style={{ width: "200px" }}
+              className="img"
+            />
             <footer>
               <h5>{title}</h5>
               <button className="like-btn">
