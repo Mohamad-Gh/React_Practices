@@ -35,7 +35,25 @@ function StockList() {
     return <div>Loading ...</div>;
   }
 
-  return <div>ok</div>;
+  return (
+    <div>
+      <table className="table hover mt-5">
+        <thead style={{ color: "rgb(79,89,102)" }}>
+          <tr>
+            console.log(responses);
+            <th scope="col">name</th>
+            <th scope="col">Last</th>
+            <th scope="col">Chg</th>
+            <th scope="col">Chg%</th>
+            <th scope="col">High</th>
+            <th scope="col">Low</th>
+            <th scope="col">Open</th>
+            <th scope="col">Pclose </th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  );
 }
 
 export default StockList;
