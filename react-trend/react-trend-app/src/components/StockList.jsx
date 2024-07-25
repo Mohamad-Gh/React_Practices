@@ -6,9 +6,9 @@ import finnHub from "../Apis/Axios";
 function StockList() {
   const [watchList, setWatchList] = useState(["GOOGL", "MSFT", "AMZN"]);
   const [loading, setLoading] = useState(true);
-  const [stock, setStock] = useState(null);
+  const [stock, setStock] = useState([]);
   const changeColor = (number) => {
-    return number > 0 ? "success" : number < 0 ? "danger" : null;
+    return number > 0 ? "success" : number < 0 ? "danger" : "";
   };
   const icon = (number) => {
     return number > 0 ? <BsCaretUpFill /> : <BsCaretDownFill />;
