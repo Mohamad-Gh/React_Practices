@@ -1,7 +1,25 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import finnHub from "../Apis/Axios";
 
 function AutoComplete() {
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await finnHub.get("/search", {
+          params: { q: search },
+        });
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    if (search.length > 0) {
+      fetchData();
+    }
+  }, [search]);
 
   return (
     <div className="w-50 p-5 rounded mx-auto">
@@ -14,7 +32,9 @@ function AutoComplete() {
           placeholder="Search"
           autoComplete="off"
           value={search}
-          // onChange={}
+          onChange={(event) => {
+            setSearch(event.target.value);
+          }}
         />
         <label htmlFor="search">Search</label>
         <ul className="dropdown-menu">
