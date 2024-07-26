@@ -3,9 +3,8 @@ import finnHub from "../Apis/Axios";
 import { AppContext, useGlobalContext } from "../context/Context";
 
 function AutoComplete() {
-  const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
-  const { addStock } = useGlobalContext();
+  const { addStock, search, setSearch } = useGlobalContext();
   const renderDropDown = () => {
     if (results.length > 0) {
       return "show";

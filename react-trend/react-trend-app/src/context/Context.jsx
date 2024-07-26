@@ -4,6 +4,7 @@ const AppContext = createContext();
 
 const ContextProvider = ({ children }) => {
   const [watchList, setWatchList] = useState([]);
+  const [search, setSearch] = useState("");
 
   const addStock = (event) => {
     const selected = event.target.id;
@@ -18,7 +19,9 @@ const ContextProvider = ({ children }) => {
   };
 
   return (
-    <AppContext.Provider value={{ watchList, addStock, deleteStock }}>
+    <AppContext.Provider
+      value={{ watchList, addStock, deleteStock, search, setSearch }}
+    >
       {children}
     </AppContext.Provider>
   );

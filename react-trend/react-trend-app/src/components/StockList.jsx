@@ -4,8 +4,7 @@ import { BsCaretDownFill, BsCaretUpFill } from "react-icons/bs";
 
 import finnHub from "../Apis/Axios";
 function StockList() {
-  const { watchList, deleteStock } = useGlobalContext();
-  console.log(watchList);
+  const { watchList, deleteStock, setSearch } = useGlobalContext();
   const [loading, setLoading] = useState(true);
   const [stock, setStock] = useState([]);
   const changeColor = (number) => {
@@ -78,7 +77,12 @@ function StockList() {
               <td>{stock.data.l}</td>
               <td>{stock.data.o}</td>
               <td>{stock.data.pc}</td>
-              <td onClick={() => deleteStock(stock.symbol)}>
+              <td
+                onClick={() => {
+                  deleteStock(stock.symbol);
+                  setSearch("");
+                }}
+              >
                 <button>remove</button>
               </td>
             </tr>
