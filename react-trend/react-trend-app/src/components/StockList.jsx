@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-
+import { useGlobalContext } from "../context/Context";
 import { BsCaretDownFill, BsCaretUpFill } from "react-icons/bs";
 
 import finnHub from "../Apis/Axios";
 function StockList() {
-  const [watchList, setWatchList] = useState(["GOOGL", "MSFT", "AMZN"]);
+  const { watchList, deleteStock } = useGlobalContext();
+  console.log(watchList);
   const [loading, setLoading] = useState(true);
   const [stock, setStock] = useState([]);
   const changeColor = (number) => {
@@ -32,6 +33,7 @@ function StockList() {
         console.log("data:", data);
         setLoading(false);
       } catch (err) {
+        watchList.pop();
         console.log(err);
       }
     };
@@ -39,7 +41,7 @@ function StockList() {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [watchList]);
   if (loading) {
     return <div>Loading ...</div>;
   }
@@ -61,7 +63,7 @@ function StockList() {
         </thead>
         <tbody>
           {stock.map((stock) => (
-            <tr className="table-row" key={stock.symbol}>
+            <tr className="table-row" key={stock.symbol} id={stock.symbol}>
               <th scope="row">{stock.symbol}</th>
               <td>{stock.data.c}</td>
               <td className={"text-" + changeColor(stock.data.d)}>
@@ -76,6 +78,9 @@ function StockList() {
               <td>{stock.data.l}</td>
               <td>{stock.data.o}</td>
               <td>{stock.data.pc}</td>
+              <td onClick={() => deleteStock(stock.symbol)}>
+                <button>remove</button>
+              </td>
             </tr>
           ))}
         </tbody>

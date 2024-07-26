@@ -1,11 +1,11 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import finnHub from "../Apis/Axios";
+import { AppContext, useGlobalContext } from "../context/Context";
 
 function AutoComplete() {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
-
+  const { addStock } = useGlobalContext();
   const renderDropDown = () => {
     if (results.length > 0) {
       return "show";
@@ -34,7 +34,6 @@ function AutoComplete() {
     return () => (isMounted = false);
   }, [search]);
 
-  console.log(results);
   return (
     <div className="w-50 p-5 rounded mx-auto">
       <div className="form-floating dropdown">
@@ -60,9 +59,14 @@ function AutoComplete() {
           }}
           className={`dropdown-menu ${renderDropDown()}`}
         >
-          {results.map((result, indx) => {
+          {results.map((result) => {
             return (
-              <li className="dropdown-item" key={result.symbol}>
+              <li
+                onClick={addStock}
+                className="dropdown-item"
+                key={result.symbol}
+                id={result.symbol}
+              >
                 {result.description} ({result.symbol})
               </li>
             );
