@@ -23,12 +23,12 @@ function StockList() {
       try {
         const responses = await Promise.all(
           watchList.map((stock) => {
-            return finnHub.get("/quote", { params: { symbol: stock } });
+            return finnHub.get("/query", {
+              params: { function: "GLOBAL_QUOTE", symbol: stock },
+            });
           })
         );
-        const data = responses.map((response) => {
-          return { data: response.data, symbol: response.config.params.symbol };
-        });
+        const data = responses;
         if (isMounted) {
           setStock(data);
         }
@@ -46,8 +46,8 @@ function StockList() {
   if (loading) {
     return <div>Loading ...</div>;
   }
-  const handleSelectedStock = (stock) => {
-    navigate(`detail/${stock}`);
+  const handleSelectedStock = (stockSymbol) => {
+    navigate(`detail/${stockSymbol}`);
   };
 
   return (
@@ -70,29 +70,31 @@ function StockList() {
             <tr
               style={{ cursor: "pointer" }}
               onClick={() => {
-                handleSelectedStock(stock.symbol);
+                handleSelectedStock(stock["01. symbol"]);
               }}
               className="table-row"
-              key={stock.symbol}
-              id={stock.symbol}
+              key={stock["01. symbol"]}
+              id={stock["01. symbol"]}
             >
-              <th scope="row">{stock.symbol}</th>
-              <td>{stock.data.c}</td>
-              <td className={"text-" + changeColor(stock.data.d)}>
-                {stock.data.d}
-                {icon(stock.data.d)}
+              <th scope="row">{stock["01. symbol"]}</th>
+              <td>{stock["09. change"]}</td>
+              <td className={"text-" + changeColor(stock["09. change"])}>
+                {stock["09. change"]}
+                {icon(stock["09. change"])}
               </td>
-              <td className={"text-" + changeColor(stock.data.d)}>
-                {stock.data.dp}
-                {icon(stock.data.dp)}
+              <td
+                className={"text-" + changeColor(stock["10. change percent"])}
+              >
+                {stock["10. change percent"]}
+                {icon(stock["10. change percent"])}
               </td>
-              <td>{stock.data.h}</td>
-              <td>{stock.data.l}</td>
-              <td>{stock.data.o}</td>
-              <td>{stock.data.pc}</td>
+              <td>{stock["04. high"]}</td>
+              <td>{stock["04. low"]}</td>
+              <td>{stock["02. open"]}</td>
+              <td>{stock["08. previous close"]}</td>
               <td
                 onClick={() => {
-                  deleteStock(stock.symbol);
+                  deleteStock(stock["01. symbol"]);
                   setSearch("");
                 }}
               >

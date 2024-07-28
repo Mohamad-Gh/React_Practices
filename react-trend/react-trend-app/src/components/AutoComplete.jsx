@@ -20,7 +20,7 @@ function AutoComplete() {
         });
         if (isMounted) {
           setResults(response.data.bestMatches);
-          console.log(results);
+          console.log(response);
         }
       } catch (err) {
         console.log(err);
@@ -63,14 +63,14 @@ function AutoComplete() {
             return (
               <li
                 onClick={() => {
-                  addStock(result.symbol);
+                  addStock(result["1. symbol"]);
                   setSearch("");
                 }}
                 className="dropdown-item"
-                key={result.symbol}
-                id={result.symbol}
+                key={result["1. symbol"]}
+                id={result["1. symbol"]}
               >
-                {result.name} ({result.symbol})
+                {result["2. name"]} ({result["1. symbol"]})
               </li>
             );
           })}
