@@ -15,11 +15,12 @@ function AutoComplete() {
     let isMounted = true;
     const fetchData = async () => {
       try {
-        const response = await finnHub.get("/search", {
-          params: { q: search },
+        const response = await finnHub.get("/query", {
+          params: { function: "SYMBOL_SEARCH", keywords: search },
         });
         if (isMounted) {
-          setResults(response.data.result);
+          setResults(response.data.bestMatches);
+          console.log(results);
         }
       } catch (err) {
         console.log(err);
@@ -61,12 +62,15 @@ function AutoComplete() {
           {results.map((result) => {
             return (
               <li
-                onClick={addStock}
+                onClick={() => {
+                  addStock(result.symbol);
+                  setSearch("");
+                }}
                 className="dropdown-item"
                 key={result.symbol}
                 id={result.symbol}
               >
-                {result.description} ({result.symbol})
+                {result.name} ({result.symbol})
               </li>
             );
           })}

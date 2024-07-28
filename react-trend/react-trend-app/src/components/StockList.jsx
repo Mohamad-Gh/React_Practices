@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "../context/Context";
 import { BsCaretDownFill, BsCaretUpFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 import finnHub from "../Apis/Axios";
 function StockList() {
   const { watchList, deleteStock, setSearch } = useGlobalContext();
   const [loading, setLoading] = useState(true);
   const [stock, setStock] = useState([]);
+  const navigate = useNavigate();
+
   const changeColor = (number) => {
     return number > 0 ? "success" : number < 0 ? "danger" : "";
   };
@@ -29,7 +32,6 @@ function StockList() {
         if (isMounted) {
           setStock(data);
         }
-        console.log("data:", data);
         setLoading(false);
       } catch (err) {
         watchList.pop();
@@ -44,6 +46,9 @@ function StockList() {
   if (loading) {
     return <div>Loading ...</div>;
   }
+  const handleSelectedStock = (stock) => {
+    navigate(`detail/${stock}`);
+  };
 
   return (
     <div>
@@ -62,7 +67,15 @@ function StockList() {
         </thead>
         <tbody>
           {stock.map((stock) => (
-            <tr className="table-row" key={stock.symbol} id={stock.symbol}>
+            <tr
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                handleSelectedStock(stock.symbol);
+              }}
+              className="table-row"
+              key={stock.symbol}
+              id={stock.symbol}
+            >
               <th scope="row">{stock.symbol}</th>
               <td>{stock.data.c}</td>
               <td className={"text-" + changeColor(stock.data.d)}>
