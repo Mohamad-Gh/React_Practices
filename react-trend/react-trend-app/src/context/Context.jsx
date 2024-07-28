@@ -3,7 +3,7 @@ import React, { useState, useContext, createContext } from "react";
 const AppContext = createContext();
 
 const ContextProvider = ({ children }) => {
-  const [watchList, setWatchList] = useState([]);
+  const [watchList, setWatchList] = useState(["IBM"]);
   const [search, setSearch] = useState("");
 
   const addStock = (stock) => {

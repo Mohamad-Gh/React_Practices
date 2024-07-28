@@ -28,7 +28,11 @@ function StockList() {
             });
           })
         );
-        const data = responses;
+        console.log("responses", responses);
+        const data = responses.map((element) => {
+          return element.data["Global Quote"];
+        });
+        console.log("data", data);
         if (isMounted) {
           setStock(data);
         }
@@ -88,7 +92,7 @@ function StockList() {
                 {stock["10. change percent"]}
                 {icon(stock["10. change percent"])}
               </td>
-              <td>{stock["04. high"]}</td>
+              <td>{stock["03. high"]}</td>
               <td>{stock["04. low"]}</td>
               <td>{stock["02. open"]}</td>
               <td>{stock["08. previous close"]}</td>
