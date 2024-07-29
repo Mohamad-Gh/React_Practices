@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import finnHub from "../Apis/Axios";
+import alphVantage from "../Apis/Axios";
 import { AppContext, useGlobalContext } from "../context/Context";
 
 function AutoComplete() {
@@ -15,7 +15,7 @@ function AutoComplete() {
     let isMounted = true;
     const fetchData = async () => {
       try {
-        const response = await finnHub.get("/query", {
+        const response = await alphVantage.get("/query", {
           params: { function: "SYMBOL_SEARCH", keywords: search },
         });
         if (isMounted) {

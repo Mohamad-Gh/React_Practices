@@ -10,11 +10,15 @@ function StockList() {
   const [stock, setStock] = useState([]);
   const navigate = useNavigate();
 
-  const changeColor = (number) => {
-    return number > 0 ? "success" : number < 0 ? "danger" : "";
+  const changeColor = (string) => {
+    return parseInt(string) > 0
+      ? "success"
+      : parseInt(string) < 0
+      ? "danger"
+      : "";
   };
-  const icon = (number) => {
-    return number > 0 ? <BsCaretUpFill /> : <BsCaretDownFill />;
+  const icon = (string) => {
+    return parseInt(string) > 0 ? <BsCaretUpFill /> : <BsCaretDownFill />;
   };
 
   useEffect(() => {
