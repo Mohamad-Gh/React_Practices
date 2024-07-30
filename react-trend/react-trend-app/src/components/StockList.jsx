@@ -11,14 +11,14 @@ function StockList() {
   const navigate = useNavigate();
 
   const changeColor = (string) => {
-    return parseInt(string) > 0
+    return parseFloat(string) > 0
       ? "success"
-      : parseInt(string) < 0
+      : parseFloat(string) < 0
       ? "danger"
       : "";
   };
   const icon = (string) => {
-    return parseInt(string) > 0 ? <BsCaretUpFill /> : <BsCaretDownFill />;
+    return parseFloat(string) > 0 ? <BsCaretUpFill /> : <BsCaretDownFill />;
   };
 
   useEffect(() => {

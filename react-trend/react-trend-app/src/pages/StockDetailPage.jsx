@@ -6,17 +6,19 @@ function StockDetailPage() {
   const { symbol } = useParams();
 
   useEffect(() => {
-    fetchData = async () => {
+    const fetchData = async () => {
       try {
         response = await alphaVantage.get("/query", {
           params: {
             function: "TIME_SERIES_DAILY",
-            symbol: "",
+            symbol: symbol,
             outputsize: "compact",
           },
         });
-        console.log(response.data);
-      } catch (err) {}
+        console.log("daily", response.data);
+      } catch (err) {
+        console.log(err);
+      }
     };
     fetchData();
   }, []);
