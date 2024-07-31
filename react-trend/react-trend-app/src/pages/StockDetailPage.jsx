@@ -19,7 +19,6 @@ function StockDetailPage() {
         });
         console.log(response.data.Information);
         setChartData(dateLooper(response.data["Time Series (Daily)"]));
-        console.log("chartData", chartData);
       } catch (err) {
         console.log(err);
       }
@@ -27,6 +26,7 @@ function StockDetailPage() {
     // setChartData(dateLooper(cal));
 
     fetchData();
+    console.log(chartData ? chartData : "no Chart Data");
   }, []);
 
   return (

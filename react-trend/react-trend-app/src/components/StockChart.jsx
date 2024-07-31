@@ -8,7 +8,7 @@ function StockChart({ chartData, symbol }) {
       align: "center",
       style: { fontSize: "24px", color: "red" },
       chart: { id: "stock data" },
-      xaxis: { type: "catagory" },
+      xaxis: { type: "datetime" },
     },
   };
   const series = [{ name: symbol, data: chartData }];
@@ -17,7 +17,12 @@ function StockChart({ chartData, symbol }) {
       style={{ backgroundColor: "rgba(145, 158, 171, 0.04" }}
       className="mt-5 p-4 shadow-sm bg-white"
     >
-      <Chart options={option} series={series} type="area" width={"100%"} />
+      <Chart
+        options={option}
+        series={series}
+        type="candlestick"
+        width={"100%"}
+      />
     </div>
   );
 }

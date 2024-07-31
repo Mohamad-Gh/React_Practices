@@ -179,22 +179,31 @@ const dayChecker = (day) => {
 };
 
 const dateLooper = (cal) => {
-  let x = [];
+  let dataForChart = [];
   const today = new Date().toISOString().slice(0, 10);
   let date =
     new Date(today).getTime() + dayChecker(today) - 1 * 24 * 60 * 60 * 1000;
   for (let i = 0; i < 10; i++) {
     let time = new Date(date).toISOString().slice(0, 10);
-    x.push({
-      x: date,
-      y: cal[time]["4. close"],
-    });
+    dataForChart = [
+      {
+        x: new Date(date).toLocaleDateString().slice(0, 10),
+        y: [
+          cal[time]["1. open"],
+          cal[time]["2. high"],
+          cal[time]["3. low"],
+          cal[time]["4. close"],
+        ],
+      },
+      ...dataForChart,
+    ];
     date = date - 1 * 24 * 60 * 60 * 1000;
     date = date + dayChecker(new Date(date));
   }
-  return x;
+  console.log(dataForChart);
+  return dataForChart;
 };
 
-// dateLooper(cal);
+dateLooper(cal);
 
 export { dayChecker, dateLooper };
