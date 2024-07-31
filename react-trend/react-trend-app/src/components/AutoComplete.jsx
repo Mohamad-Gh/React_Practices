@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import alphVantage from "../Apis/Axios";
-import { AppContext, useGlobalContext } from "../context/Context";
+import { useGlobalContext } from "../context/Context";
 
 function AutoComplete() {
   const [results, setResults] = useState([]);
@@ -20,7 +20,6 @@ function AutoComplete() {
         });
         if (isMounted) {
           setResults(response.data.bestMatches);
-          console.log(response);
         }
       } catch (err) {
         console.log(err);

@@ -8,6 +8,7 @@ function StockList() {
   const { watchList, deleteStock, setSearch } = useGlobalContext();
   const [loading, setLoading] = useState(true);
   const [stock, setStock] = useState([]);
+  const [limit, setLimit] = useState(false);
   const navigate = useNavigate();
 
   const changeColor = (string) => {
@@ -32,11 +33,12 @@ function StockList() {
             });
           })
         );
-        console.log("responses", responses);
         const data = responses.map((element) => {
+          if (element.data.Information) {
+            setLimit(true);
+          }
           return element.data["Global Quote"];
         });
-        console.log("data", data);
         if (isMounted) {
           setStock(data);
         }
@@ -51,6 +53,9 @@ function StockList() {
       isMounted = false;
     };
   }, [watchList]);
+  if (limit) {
+    return <h3 className="text-center">API Limit Reached</h3>;
+  }
   if (loading) {
     return <div>Loading ...</div>;
   }

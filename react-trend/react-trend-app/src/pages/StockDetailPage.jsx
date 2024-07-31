@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import alphaVantage, { dateLooper } from "../Apis/Axios";
+import alphaVantage, { dateLooper, cal } from "../Apis/Axios";
 import StockChart from "../components/StockChart";
 
 function StockDetailPage() {
@@ -17,13 +17,15 @@ function StockDetailPage() {
             outputsize: "compact",
           },
         });
-        console.log(response.data);
+        console.log(response.data.Information);
         setChartData(dateLooper(response.data["Time Series (Daily)"]));
         console.log("chartData", chartData);
       } catch (err) {
         console.log(err);
       }
     };
+    // setChartData(dateLooper(cal));
+
     fetchData();
   }, []);
 
