@@ -159,7 +159,7 @@ export const cal = {
 
 // const TOKEN = "cqej74hr01qm14qaj7i0cqej74hr01qm14qaj7ig";
 const TOKEN = "KCHGV6EHEPQT7THI";
-const AnotherToken = "C5B00NA7JBOO67Q1";
+const AnotherToken = "C8M4TCRG2ZOTV6XY";
 
 export default axios.create({
   baseURL: "https://www.alphavantage.co",
@@ -206,10 +206,10 @@ const dateLooper = (cal) => {
     date = date - 1 * 24 * 60 * 60 * 1000;
     date = date + dayChecker(new Date(date));
   }
-  console.log(dataForChart);
+  // console.log(dataForChart);
   return dataForChart;
 };
 
-dateLooper(cal);
+// dateLooper(cal);
 
 export { dayChecker, dateLooper };

@@ -106,13 +106,18 @@ function StockList() {
               <td>{stock["04. low"]}</td>
               <td>{stock["02. open"]}</td>
               <td>{stock["08. previous close"]}</td>
-              <td
-                onClick={() => {
-                  deleteStock(stock["01. symbol"]);
-                  setSearch("");
-                }}
-              >
-                <button>remove</button>
+              <td>
+                <button
+                  className="btn btn-danger btn-sm ml-3 d-inline-block delete-button"
+                  style={{ zIndex: "10" }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    deleteStock(stock["01. symbol"]);
+                    setSearch("");
+                  }}
+                >
+                  remove
+                </button>
               </td>
             </tr>
           ))}

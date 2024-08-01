@@ -10,7 +10,7 @@ function StockDetailPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      let path = "";
+      let path = null;
       switch (dateFormat) {
         case "Weekly":
           path = "";
@@ -46,6 +46,15 @@ function StockDetailPage() {
     console.log(chartData ? chartData : "no Chart Data");
   }, []);
 
+  const handleButtonClass = (button) => {
+    const classes = "btn - m-1 ";
+    if (button === dateFormat) {
+      return classes + "btn-primary";
+    } else {
+      return classes + "btn-outline-primary";
+    }
+  };
+
   return (
     <div>
       <div>StockDetailPage {symbol}</div>
@@ -59,9 +68,24 @@ function StockDetailPage() {
             dateFormat={dateFormat}
           />
           <div>
-            <button onClick={() => setDateFormat("Daily")}>daily</button>
-            <button onClick={() => setDateFormat("Weekly")}>weekly</button>
-            <button onClick={() => setDateFormat("Monthly")}>monthly</button>
+            <button
+              className={handleButtonClass("Daily")}
+              onClick={() => setDateFormat("Daily")}
+            >
+              daily
+            </button>
+            <button
+              className={handleButtonClass("Weekly")}
+              onClick={() => setDateFormat("Weekly")}
+            >
+              weekly
+            </button>
+            <button
+              className={handleButtonClass("Monthly")}
+              onClick={() => setDateFormat("Monthly")}
+            >
+              monthly
+            </button>
           </div>
         </div>
       )}

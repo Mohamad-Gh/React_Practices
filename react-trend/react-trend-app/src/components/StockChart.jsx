@@ -2,7 +2,13 @@ import React from "react";
 import Chart from "react-apexcharts";
 
 function StockChart({ chartData, symbol }) {
+  const color =
+    chartData[0].y - chartData[chartData.length - 1].y < 0
+      ? "#546E7A"
+      : "#E91E63";
+
   const option = {
+    color: [color],
     title: {
       text: { symbol },
       align: "center",
