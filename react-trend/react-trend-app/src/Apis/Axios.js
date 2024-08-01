@@ -159,7 +159,7 @@ export const cal = {
 
 // const TOKEN = "cqej74hr01qm14qaj7i0cqej74hr01qm14qaj7ig";
 const TOKEN = "KCHGV6EHEPQT7THI";
-const AnotherToken = "C8M4TCRG2ZOTV6XY";
+const AnotherToken = "U87D5SIA1CAUK9GR";
 
 export default axios.create({
   baseURL: "https://www.alphavantage.co",

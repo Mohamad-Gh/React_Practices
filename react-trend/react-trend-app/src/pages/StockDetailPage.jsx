@@ -13,7 +13,7 @@ function StockDetailPage() {
       let path = null;
       switch (dateFormat) {
         case "Weekly":
-          path = "";
+          path = "Weekly Time Series";
           break;
         case "Monthly":
           path = "Monthly Time Series";
@@ -25,9 +25,9 @@ function StockDetailPage() {
         const response = await alphaVantage.get("/query", {
           params: {
             function:
-              dateFormat == "weekly"
+              dateFormat == "Weekly"
                 ? "TIME_SERIES_WEEKLY"
-                : dateFormat == "monthly"
+                : dateFormat == "Monthly"
                 ? "TIME_SERIES_MONTHLY"
                 : "TIME_SERIES_DAILY",
             symbol: symbol,
@@ -44,7 +44,7 @@ function StockDetailPage() {
 
     fetchData();
     console.log(chartData ? chartData : "no Chart Data");
-  }, []);
+  }, [dateFormat]);
 
   const handleButtonClass = (button) => {
     const classes = "btn - m-1 ";
