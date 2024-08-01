@@ -35,6 +35,7 @@ function StockList() {
         );
         const data = responses.map((element) => {
           if (element.data.Information) {
+            console.log(element.data.Information);
             setLimit(true);
           }
           return element.data["Global Quote"];

@@ -159,10 +159,11 @@ export const cal = {
 
 // const TOKEN = "cqej74hr01qm14qaj7i0cqej74hr01qm14qaj7ig";
 const TOKEN = "KCHGV6EHEPQT7THI";
+const AnotherToken = "C5B00NA7JBOO67Q1";
 
 export default axios.create({
   baseURL: "https://www.alphavantage.co",
-  params: { apikey: TOKEN },
+  params: { apikey: AnotherToken },
 });
 
 const dayChecker = (day) => {
@@ -181,22 +182,27 @@ const dayChecker = (day) => {
 const dateLooper = (cal) => {
   let dataForChart = [];
   const today = new Date().toISOString().slice(0, 10);
-  let date =
-    new Date(today).getTime() + dayChecker(today) - 1 * 24 * 60 * 60 * 1000;
-  for (let i = 0; i < 10; i++) {
+  let date = new Date(today).getTime() + dayChecker(today);
+  for (let i = 0; i < 22; i++) {
     let time = new Date(date).toISOString().slice(0, 10);
-    dataForChart = [
-      {
-        x: new Date(date).toLocaleDateString().slice(0, 10),
-        y: [
-          cal[time]["1. open"],
-          cal[time]["2. high"],
-          cal[time]["3. low"],
-          cal[time]["4. close"],
-        ],
-      },
-      ...dataForChart,
-    ];
+    if (!cal[time]) {
+      date = date - 1 * 24 * 60 * 60 * 1000;
+      date = date + dayChecker(new Date(date));
+    } else {
+      dataForChart = [
+        {
+          x: new Date(date).toISOString().slice(0, 10),
+          y: [
+            cal[time]["1. open"],
+            cal[time]["2. high"],
+            cal[time]["3. low"],
+            cal[time]["4. close"],
+          ],
+        },
+        ...dataForChart,
+      ];
+    }
+
     date = date - 1 * 24 * 60 * 60 * 1000;
     date = date + dayChecker(new Date(date));
   }
