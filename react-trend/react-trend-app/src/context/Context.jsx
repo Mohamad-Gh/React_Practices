@@ -1,10 +1,17 @@
-import React, { useState, useContext, createContext } from "react";
+import React, { useState, useContext, createContext, useEffect } from "react";
 
 const AppContext = createContext();
 
 const ContextProvider = ({ children }) => {
-  const [watchList, setWatchList] = useState(["IBM"]);
+  const [watchList, setWatchList] = useState(
+    localStorage.getItem("watchList")?.split(",") || ["GOOGL", "MSFT", "AMZN"]
+  );
+  console.log(localStorage.getItem("watchList"));
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    localStorage.getItem("watchList", watchList);
+  }, [watchList]);
 
   const addStock = (stock) => {
     if (watchList.includes(stock)) {
