@@ -4,7 +4,7 @@ import Chart from "react-apexcharts";
 function StockChart({ chartData, symbol }) {
   const chartColor =
     chartData[0].y - chartData[chartData.length - 1].y < 0
-      ? "#546E7A"
+      ? "#146E7A"
       : "#E91E63";
 
   console.log(chartColor);
