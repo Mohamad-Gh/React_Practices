@@ -4,9 +4,8 @@ const AppContext = createContext();
 
 const ContextProvider = ({ children }) => {
   const [watchList, setWatchList] = useState(
-    localStorage.getItem("watchList")?.split(",") || ["GOOGL", "MSFT", "AMZN"]
+    localStorage.getItem("watchList")?.split(",") ?? ["GOOGL", "MSFT", "AMZN"]
   );
-  console.log(localStorage.getItem("watchList"));
   const [search, setSearch] = useState("");
 
   useEffect(() => {

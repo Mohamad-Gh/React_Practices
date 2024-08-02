@@ -183,12 +183,13 @@ const dateLooper = (cal) => {
   let dataForChart = [];
   const today = new Date().toISOString().slice(0, 10);
   let date = new Date(today).getTime() + dayChecker(today);
-  for (let i = 0; i < 22; i++) {
+  for (let i = 0; i < 22; ) {
     let time = new Date(date).toISOString().slice(0, 10);
     if (!cal[time]) {
       date = date - 1 * 24 * 60 * 60 * 1000;
       date = date + dayChecker(new Date(date));
     } else {
+      i++;
       dataForChart = [
         {
           x: new Date(date).toISOString().slice(0, 10),
