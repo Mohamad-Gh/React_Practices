@@ -194,9 +194,9 @@ const dateLooper = (cal) => {
         {
           x: new Date(date).toISOString().slice(0, 10),
           y: [
-            cal[time]["1. open"],
-            cal[time]["2. high"],
-            cal[time]["3. low"],
+            // cal[time]["1. open"],
+            // cal[time]["2. high"],
+            // cal[time]["3. low"],
             cal[time]["4. close"],
           ],
         },
