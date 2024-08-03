@@ -9,7 +9,7 @@ const ContextProvider = ({ children }) => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    localStorage.getItem("watchList", watchList);
+    localStorage.setItem("watchList", watchList);
   }, [watchList]);
 
   const addStock = (stock) => {

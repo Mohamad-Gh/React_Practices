@@ -13,7 +13,6 @@ function App() {
           <Routes>
             <Route path="/" element={<StockOverviewPage />} />
             <Route path="/detail/:symbol" element={<StockDetailPage />} />
-            <Route />
           </Routes>
         </BrowserRouter>
       </ContextProvider>
