@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import alphaVantage, { dateLooper } from "../Apis/Axios";
 import StockChart from "../components/StockChart";
+import Heading from "../components/Heading";
 
 function StockDetailPage() {
   const { symbol } = useParams();
@@ -57,6 +58,7 @@ function StockDetailPage() {
 
   return (
     <div>
+      <Heading />
       <div>StockDetailPage {symbol}</div>
       {!chartData ? (
         <h3>Loading ...</h3>
