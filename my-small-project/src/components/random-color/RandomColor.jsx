@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function RandomColor() {
-  const [rgb, setRgb] = useState(false);
-  const [hex, setHex] = useState(false);
+  const [typeOfColor, setTypeOfColor] = useState("hex");
   const [color, setColor] = useState(null);
 
   const generateRGB = () => {
@@ -41,14 +40,22 @@ function RandomColor() {
         default:
           number = number;
       }
-      color = color + number;
+      color += number;
     }
     setColor(color);
   };
 
   const handleRandomGenerator = () => {
-    rgb ? generateRGB() : hex ? generateHEX() : null;
+    typeOfColor === "rgb"
+      ? generateRGB()
+      : typeOfColor === "hex"
+      ? generateHEX()
+      : null;
   };
+
+  useEffect(() => {
+    handleRandomGenerator();
+  }, [typeOfColor]);
 
   return (
     <div
@@ -60,18 +67,16 @@ function RandomColor() {
     >
       <button
         onClick={() => {
-          setRgb(false);
-          setHex(true);
-          generateHEX();
+          setTypeOfColor("hex");
+          // generateHEX();
         }}
       >
         Create HEX Color
       </button>
       <button
         onClick={() => {
-          setHex(false);
-          setRgb(true);
-          generateRGB();
+          setTypeOfColor("rgb");
+          // generateRGB();
         }}
       >
         Create RGB Color
@@ -89,7 +94,7 @@ function RandomColor() {
           gap: "20px",
         }}
       >
-        {<h3>{rgb ? "rgb" : hex ? "hex" : null} Color</h3>}
+        {<h3>{typeOfColor} Color</h3>}
         <h2>{color}</h2>
       </div>
     </div>
