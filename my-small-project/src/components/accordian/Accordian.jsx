@@ -7,13 +7,13 @@ import "./style.css";
 
 export default function Accordian() {
   const [selected, setSelected] = useState(null);
-  const [multipleList, setList] = useState([]);
-  const List = ["1", "2", "3", "4"];
+  const [multipleList, setMultipleList] = useState(false);
   const [newList, setNewList] = useState([]);
 
   const handleMultipleSelection = () => {
-    multipleList.length < 1 ? setList(List) : setList([]);
-    console.log(multipleList);
+    setSelected(null);
+    multipleList ? setNewList([]) : null;
+    setMultipleList(!multipleList);
   };
   return (
     <div className="acc-wrapper">
@@ -30,7 +30,7 @@ export default function Accordian() {
                   ? setSelected(null)
                   : setSelected(selectedId);
                 console.log(selectedId);
-                multipleList.length > 0 && !newList.includes(selectedId)
+                multipleList && !newList.includes(selectedId)
                   ? setNewList((prvs) => [...prvs, selectedId])
                   : null;
               }}
@@ -40,7 +40,8 @@ export default function Accordian() {
                 <h3>{dataItem.question}</h3>
                 <span>+</span>
               </div>
-              {newList.includes(dataItem.id) || selected === dataItem.id ? (
+              {(multipleList && newList.includes(dataItem.id)) ||
+              selected === dataItem.id ? (
                 <div className="content">{dataItem.answer}</div>
               ) : null}
             </div>
