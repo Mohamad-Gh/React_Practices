@@ -24,9 +24,12 @@ export default function Accordian() {
             <div className="item">
               <div className="title">
                 <h3
+                  key={dataItem.id}
                   id={dataItem.id}
                   onClick={(event) => {
-                    setSelected(event.target.id);
+                    selected == event.target.id
+                      ? setSelected(null)
+                      : setSelected(event.target.id);
                     // console.log(multipleList);
                     multipleList.length > 0 &&
                     !newList.includes(event.target.id)
@@ -39,9 +42,7 @@ export default function Accordian() {
                 <span>+</span>
               </div>
               {newList.includes(dataItem.id) || selected === dataItem.id ? (
-                <div key={dataItem.id} className="content">
-                  {dataItem.answer}
-                </div>
+                <div className="content">{dataItem.answer}</div>
               ) : null}
             </div>
           ))
