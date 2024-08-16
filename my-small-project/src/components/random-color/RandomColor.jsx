@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function RandomColor() {
-  const [rgb, setRgb] = useState(true);
+  const [rgb, setRgb] = useState(false);
   const [hex, setHex] = useState(false);
   const [color, setColor] = useState(null);
 
@@ -53,7 +53,7 @@ function RandomColor() {
   return (
     <div
       style={{
-        // width: "100vw",
+        width: "100vw",
         height: "100vh",
         background: color ? color : "#000",
       }}
