@@ -21,24 +21,23 @@ export default function Accordian() {
       <div className="accordian">
         {data && data.length > 0 ? (
           data.map((dataItem) => (
-            <div className="item">
+            <div
+              key={dataItem.id}
+              id={dataItem.id}
+              onClick={(event) => {
+                let selectedId = event.currentTarget.id;
+                selected == selectedId
+                  ? setSelected(null)
+                  : setSelected(selectedId);
+                console.log(selectedId);
+                multipleList.length > 0 && !newList.includes(selectedId)
+                  ? setNewList((prvs) => [...prvs, selectedId])
+                  : null;
+              }}
+              className="item"
+            >
               <div className="title">
-                <h3
-                  key={dataItem.id}
-                  id={dataItem.id}
-                  onClick={(event) => {
-                    selected == event.target.id
-                      ? setSelected(null)
-                      : setSelected(event.target.id);
-                    // console.log(multipleList);
-                    multipleList.length > 0 &&
-                    !newList.includes(event.target.id)
-                      ? setNewList((prvs) => [...prvs, event.target.id])
-                      : null;
-                  }}
-                >
-                  {dataItem.question}
-                </h3>
+                <h3>{dataItem.question}</h3>
                 <span>+</span>
               </div>
               {newList.includes(dataItem.id) || selected === dataItem.id ? (
