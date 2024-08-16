@@ -10,14 +10,25 @@ export default function Accordian() {
   const [multipleList, setMultipleList] = useState(false);
   const [newList, setNewList] = useState([]);
 
-  const handleMultipleSelection = () => {
+  const handleMultipleButton = () => {
     setSelected(null);
     multipleList ? setNewList([]) : null;
     setMultipleList(!multipleList);
   };
+
+  const handleSingleSelection = (id) => {
+    selected == id ? setSelected(null) : setSelected(id);
+  };
+
+  const handleMultipleSelection = (id) => {
+    !newList.includes(id)
+      ? setNewList((prvs) => [...prvs, id])
+      : setNewList(() => newList.filter((elements) => elements != id));
+  };
+
   return (
     <div className="acc-wrapper">
-      <button onClick={handleMultipleSelection}>Enable Multi Selection</button>
+      <button onClick={handleMultipleButton}>Enable Multi Selection</button>
       <div className="accordian">
         {data && data.length > 0 ? (
           data.map((dataItem) => (
@@ -26,13 +37,9 @@ export default function Accordian() {
               id={dataItem.id}
               onClick={(event) => {
                 let selectedId = event.currentTarget.id;
-                selected == selectedId
-                  ? setSelected(null)
-                  : setSelected(selectedId);
-                console.log(selectedId);
-                multipleList && !newList.includes(selectedId)
-                  ? setNewList((prvs) => [...prvs, selectedId])
-                  : null;
+                !multipleList
+                  ? handleSingleSelection(selectedId)
+                  : handleMultipleSelection(selectedId);
               }}
               className="item"
             >
