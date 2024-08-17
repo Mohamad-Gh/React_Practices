@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
-import axios from "axios";
+import axios from "./Axios";
+import { page, limit } from "../../constants/const";
 
 function ImageSlider() {
   const [imageList, setImageList] = useState(null);
@@ -9,9 +10,9 @@ function ImageSlider() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(
-          "https://picsum.photos/v2/list?page=1&limit=10"
-        );
+        const { data } = await axios.get("/list", {
+          params: { page: page, limit: limit },
+        });
         setImageList(data);
       } catch (error) {
         console.log(error);
