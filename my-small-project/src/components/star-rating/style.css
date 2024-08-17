@@ -1,0 +1,12 @@
+main {
+  background-color: #000000;
+  height: 100vh;
+}
+
+.active {
+  color: #fff700;
+}
+
+.inactive {
+  color: #fff;
+}
