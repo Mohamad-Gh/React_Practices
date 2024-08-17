@@ -4,14 +4,14 @@ import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 import axios from "./Axios";
 import { page, limit } from "../../constants/const";
 
-function ImageSlider() {
+function ImageSlider({ imageLimit = limit }) {
   const [imageList, setImageList] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get("/list", {
-          params: { page: page, limit: limit },
+          params: { page: page, limit: imageLimit },
         });
         setImageList(data);
       } catch (error) {
