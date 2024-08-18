@@ -10,7 +10,7 @@ function App() {
       {/* <Accordian /> */}
       {/* <RandomColor /> */}
       {/* <StarRating /> */}
-      <ImageSlider imageLimit={5} pageNumber={3} />
+      <ImageSlider imageLimit={10} pageNumber={3} />
     </>
   );
 }
