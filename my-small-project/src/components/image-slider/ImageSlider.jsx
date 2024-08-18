@@ -4,23 +4,38 @@ import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 import axios from "./Axios";
 import { page, limit } from "../../constants/const";
 
-function ImageSlider({ imageLimit = limit }) {
+function ImageSlider({ imageLimit = limit, pageNumber = page }) {
   const [imageList, setImageList] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const { data } = await axios.get("/list", {
-          params: { page: page, limit: imageLimit },
+          params: { page: pageNumber, limit: imageLimit },
         });
-        setImageList(data);
+        if (data) {
+          setImageList(data);
+          setLoading(false);
+        }
       } catch (error) {
+        setError(error);
         console.log(error);
       }
     };
     fetchData();
   }, []);
 
+  if (loading) {
+    return <h1>Loading ...</h1>;
+  }
+
+  if (error !== null) {
+    return <div>Something Went Wrong {error}</div>;
+  }
   return (
     <div className="container">
       <BsArrowLeftCircleFill

@@ -7,7 +7,10 @@ import ImageSlider from "./components/image-slider/ImageSlider";
 function App() {
   return (
     <>
-      <ImageSlider />
+      {/* <Accordian /> */}
+      {/* <RandomColor /> */}
+      {/* <StarRating /> */}
+      <ImageSlider imageLimit={5} pageNumber={3} />
     </>
   );
 }
