@@ -33,6 +33,9 @@ function ImageSlider({ imageLimit = limit }) {
     return <h1>Loading ...</h1>;
   }
 
+  if (error) {
+    return <h1>Something Went Wrogn {error}</h1>;
+  }
   return (
     <div className="container">
       <BsArrowLeftCircleFill
