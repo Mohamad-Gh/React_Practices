@@ -1,6 +1,8 @@
 import React from "react";
 import Logo from "../../assets/food-logo.png";
 
+import DarkMode from "./DarkMode";
+
 import { FaCartShopping } from "react-icons/fa6";
 
 function Navbar() {
@@ -18,7 +20,7 @@ function Navbar() {
                 Foodie
               </a>
             </div>
-            <div>
+            <div className="flex items-center gap-4">
               <div>
                 <div>
                   <DarkMode />
