@@ -4,29 +4,37 @@ import darkPng from "../../assets/website/dark-mode-button.png";
 
 function DarkMode() {
   const [darkModeTheme, setDarkModeTheme] = useState(
-    localStorage.getItem("darkModeTheme") || false
+    localStorage.getItem("darkModeTheme")
+      ? localStorage.getItem("darkModeTheme")
+      : "light"
   );
 
   useEffect(() => {
     const element = document.documentElement;
-    if (darkModeTheme) {
+    if (darkModeTheme === "dark") {
       element.classList.add("dark");
+      localStorage.setItem("darkModeTheme", "dark");
     } else {
       element.classList.remove("dark");
+      localStorage.setItem("darkModeTheme", "light");
     }
-    localStorage.setItem("darkModeTheme", { darkModeTheme });
   }, [darkModeTheme]);
 
   const changeTheme = () => {
-    setDarkModeTheme(!darkModeTheme);
+    darkModeTheme === "light"
+      ? setDarkModeTheme("dark")
+      : darkModeTheme === "dark"
+      ? setDarkModeTheme("light")
+      : null;
   };
-
+  console.log("localStorage", localStorage.getItem("darkModeTheme"));
+  console.log("darkmodetheme", darkModeTheme);
   return (
     <button className="flex items-center" onClick={changeTheme}>
       <img
         className="w-12 cursor-pointer drop-shadow-[1px_1px_2px_rgba(0,0,0,0.5)] duration-300"
-        src={!darkModeTheme ? lightPng : darkPng}
-        alt={!darkModeTheme ? "light-mode" : "dark-mode"}
+        src={darkModeTheme === "light" ? lightPng : darkPng}
+        alt={darkModeTheme === "light" ? "light-mode" : "dark-mode"}
       />
     </button>
   );
