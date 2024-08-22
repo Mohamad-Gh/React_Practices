@@ -27,8 +27,6 @@ function DarkMode() {
       ? setDarkModeTheme("light")
       : null;
   };
-  console.log("localStorage", localStorage.getItem("darkModeTheme"));
-  console.log("darkmodetheme", darkModeTheme);
   return (
     <button className="flex items-center" onClick={changeTheme}>
       <img
