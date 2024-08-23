@@ -5,6 +5,7 @@ import Services from "./components/ServicesComponent/Services";
 import Banner from "./components/Banner/Banner";
 import AppStore from "./components/AppStore/AppStore";
 import Testimonial from "./components/Testimonial/Testimonial";
+import Footer from "./components/Footer/Footer";
 export default function App() {
   return (
     <>
@@ -15,6 +16,7 @@ export default function App() {
         <Banner />
         <AppStore />
         <Testimonial />
+        <Footer />
       </div>
     </>
   );
