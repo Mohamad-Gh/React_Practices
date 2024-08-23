@@ -4,6 +4,7 @@ import Hero from "./components/Hero/Hero";
 import Services from "./components/ServicesComponent/Services";
 import Banner from "./components/Banner/Banner";
 import AppStore from "./components/AppStore/AppStore";
+import Testimonial from "./components/Testimonial/Testimonial";
 export default function App() {
   return (
     <>
@@ -13,6 +14,7 @@ export default function App() {
         <Services />
         <Banner />
         <AppStore />
+        <Testimonial />
       </div>
     </>
   );
