@@ -3,20 +3,20 @@ import lightPng from "../../assets/website/light-mode-button.png";
 import darkPng from "../../assets/website/dark-mode-button.png";
 
 function DarkMode() {
+  const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+
   const [darkModeTheme, setDarkModeTheme] = useState(
-    localStorage.getItem("darkModeTheme")
-      ? localStorage.getItem("darkModeTheme")
-      : "light"
+    prefersDarkScheme.matches ? "dark" : "light"
   );
 
   useEffect(() => {
     const element = document.documentElement;
     if (darkModeTheme === "dark") {
       element.classList.add("dark");
-      localStorage.setItem("darkModeTheme", "dark");
+      // localStorage.setItem("darkModeTheme", "dark");
     } else {
       element.classList.remove("dark");
-      localStorage.setItem("darkModeTheme", "light");
+      // localStorage.setItem("darkModeTheme", "light");
     }
   }, [darkModeTheme]);
 

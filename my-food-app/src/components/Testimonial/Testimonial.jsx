@@ -59,11 +59,8 @@ function Testimonial() {
           <div className="grid grid-cols-1 max-w-[600px] mx-auto gap-6">
             <Slider {...settings}>
               {testimonialData.map((data) => (
-                <div className="my-6">
-                  <div
-                    key={data.id}
-                    className="flex flex-col justify-center items-center gap-4 text-center   shadow-lg p-4 mx-4 rounded-xl dark:bg-gray-800 bg-primary/10 relative"
-                  >
+                <div className="my-6" key={data.id}>
+                  <div className="flex flex-col justify-center items-center gap-4 text-center   shadow-lg p-4 mx-4 rounded-xl dark:bg-gray-800 bg-primary/10 relative">
                     <img
                       src={data.img}
                       alt={data.name}
