@@ -4,7 +4,6 @@ import darkPng from "../../assets/website/dark-mode-button.png";
 
 function DarkMode() {
   const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
-
   const [darkModeTheme, setDarkModeTheme] = useState(
     prefersDarkScheme.matches ? "dark" : "light"
   );

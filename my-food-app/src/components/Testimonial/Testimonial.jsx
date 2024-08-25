@@ -3,6 +3,7 @@ import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "./style.css";
 
 const testimonialData = [
   {
@@ -38,6 +39,11 @@ function Testimonial() {
     // cssEase: "linear",
     pauseOnHover: true,
     pauseOnFocus: true,
+    appendDots: (dots) => (
+      <div className="dark:text-secondary">
+        <ul style={{ margin: "0px" }}>{dots}</ul>
+      </div>
+    ),
   };
 
   return (
@@ -68,7 +74,7 @@ function Testimonial() {
                     />
                     <p className="text-gray-500 text-sm">{data.text}</p>
                     <h1 className="text-xl font-bold">{data.name}</h1>
-                    <p className="text-black/20 text-9xl font-serif absolute top-0 right-0">
+                    <p className="text-black/20 text-9xl font-serif absolute top-0 right-0 dark:text-white">
                       ,,
                     </p>
                   </div>

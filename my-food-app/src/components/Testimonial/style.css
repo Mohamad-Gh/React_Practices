@@ -1,0 +1,9 @@
+.dark .slick-dots li button:before {
+  color: #f5f5f5;
+}
+.dark .slick-dots li button:hover:before {
+  color: #ff9c01;
+}
+.dark .slick-dots li.slick-active button:before {
+  color: #ffc001;
+}
