@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "../../assets/food-logo.png";
-
+import { Link } from "react-router-dom";
 import DarkMode from "./DarkMode";
 
 import { FaCartShopping } from "react-icons/fa6";
@@ -28,12 +28,20 @@ function Navbar() {
               </div>
               <ul className=" hidden sm:flex gap-4">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="/"
                     className="inline-block py-4 px-4 hover:text-primary"
                   >
                     Home
-                  </a>
+                  </Link>
+                </li>{" "}
+                <li>
+                  <Link
+                    to="/Foods"
+                    className="inline-block py-4 px-4 hover:text-primary"
+                  >
+                    Menu
+                  </Link>
                 </li>
                 <li>
                   <a
