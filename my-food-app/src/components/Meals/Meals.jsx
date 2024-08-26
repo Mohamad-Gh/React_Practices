@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import { useGlobalContext } from "../../Context/Context";
+import { FaRegThumbsUp } from "react-icons/fa6";
+
 function Meals() {
-  const [loading, setLoading] = useState(false);
-  const [meals, setMeals] = useState([]);
+  const { meals, loading } = useGlobalContext();
+  // const [loading, setLoading] = useState(false);
+  // const [meals, setMeals] = useState([]);
 
-  const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+  // const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const { data } = await axios.get(url);
-        data.meals.length > 0 ? console.log(data) : console.log("no Data");
-        data.meals.length > 0 ? setMeals(response.data) : null;
-      } catch (e) {}
-      setLoading(false);
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const { data } = await axios.get(url);
+  //       data.meals.length > 0 ? setMeals(data) : null;
+  //     } catch (e) {}
+  //     setLoading(false);
+  //   };
+  //   fetchData();
+  // }, []);
 
   if (loading) {
     return <h1>Loading ...</h1>;
@@ -26,7 +28,30 @@ function Meals() {
     return <h1>No Meals Found!!</h1>;
   }
 
-  return <div>Meals</div>;
+  return (
+    <section className="section-center dark:bg-gray-900 dark:text-white duration-200">
+      {meals.map(({ idMeal, strMeal: title, strMealThumb: image }) => {
+        return (
+          <article key={idMeal} className="single-meal">
+            <img
+              onClick={() => {
+                selectMeal(idMeal);
+              }}
+              src={image}
+              style={{ width: "200px" }}
+              className="img"
+            />
+            <footer>
+              <h5>{title}</h5>
+              <button className="like-btn" onClick={() => addFavorite(idMeal)}>
+                <FaRegThumbsUp />
+              </button>
+            </footer>
+          </article>
+        );
+      })}
+    </section>
+  );
 }
 
 export default Meals;

@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import Foods from "./pages/Foods";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import aos from "aos";
+import "./App.css";
 export default function App() {
   return (
     <>
