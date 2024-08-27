@@ -53,7 +53,7 @@ function AppProvider({ children }) {
 
   return (
     <AppContext.Provider
-      value={{ meals, loading, error, setTerm, fetchRandomMeal, fetchMeals }}
+      value={{ meals, loading, error, setTerm, fetchRandomMeal }}
     >
       {children}
     </AppContext.Provider>

@@ -12,13 +12,13 @@ function Navbar() {
         <div className="container py-3 sm:py-0 ">
           <div className="flex justify-between items-center">
             <div>
-              <a
-                href="#"
+              <Link
+                to={"/"}
                 className="flex items-center gap-3 text-2xl sm:text-3xl font-bold"
               >
                 <img src={Logo} alt="logo" className="w-10" />
                 Foodie
-              </a>
+              </Link>
             </div>
             <div className="flex items-center gap-4">
               <div>

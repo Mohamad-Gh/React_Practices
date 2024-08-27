@@ -3,7 +3,7 @@ import { useGlobalContext } from "../../Context/Context";
 
 function Search() {
   const [text, setText] = useState("");
-  const { setTerm, fetchRandomMeal, fetchMeals } = useGlobalContext();
+  const { setTerm, fetchRandomMeal } = useGlobalContext();
   const handleChange = (e) => {
     setText(e.target.value);
   };
@@ -12,6 +12,8 @@ function Search() {
     if (text) {
       setTerm(text);
       setText("");
+    } else {
+      setTerm(" ");
     }
   };
 
