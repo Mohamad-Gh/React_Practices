@@ -1,16 +1,16 @@
 import React, { useState } from "react";
+import { useGlobalContext } from "../../Context/Context";
 
 function Search() {
   const [text, setText] = useState("");
-  //   const { setTerm, fetchRandomMeal } = useGlobalContext();
+  const { setTerm, fetchRandomMeal, fetchMeals } = useGlobalContext();
   const handleChange = (e) => {
     setText(e.target.value);
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (text) {
-      //   setTerm(text);
+      setTerm(text);
       setText("");
     }
   };
@@ -18,7 +18,7 @@ function Search() {
   const handleRandomMeal = () => {
     setTerm("");
     setText("");
-    // fetchRandomMeal();
+    fetchRandomMeal();
   };
   return (
     <header className="search-container dark:bg-gray-900 dark:text-white duration-200">

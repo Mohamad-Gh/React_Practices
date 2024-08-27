@@ -24,12 +24,12 @@ function Meals() {
   if (loading) {
     return <h1>Loading ...</h1>;
   }
-  if (meals.length < 1) {
+  if (meals == null || meals.length < 1) {
     return <h1>No Meals Found!!</h1>;
   }
 
   return (
-    <section className="section-center dark:bg-gray-900 dark:text-white duration-200">
+    <section className="section-center">
       {meals.map(({ idMeal, strMeal: title, strMealThumb: image }) => {
         return (
           <article key={idMeal} className="single-meal">
