@@ -1,9 +1,10 @@
 import React from "react";
 import { useGlobalContext } from "../../Context/Context";
 import { FaRegThumbsUp } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 function Meals() {
-  const { meals, loading } = useGlobalContext();
+  const { meals, loading, setSelectedMeal } = useGlobalContext();
   // const [loading, setLoading] = useState(false);
   // const [meals, setMeals] = useState([]);
 
@@ -33,14 +34,16 @@ function Meals() {
       {meals.map(({ idMeal, strMeal: title, strMealThumb: image }) => {
         return (
           <article key={idMeal} className="single-meal">
-            <img
-              onClick={() => {
-                selectMeal(idMeal);
-              }}
-              src={image}
-              style={{ width: "200px" }}
-              className="img"
-            />
+            <Link to="/selectedMeal:title">
+              <img
+                onClick={() => {
+                  setSelectedMeal(idMeal);
+                }}
+                src={image}
+                style={{ width: "200px" }}
+                className="img"
+              />
+            </Link>
             <footer>
               <h5>{title}</h5>
               <button className="like-btn" onClick={() => addFavorite(idMeal)}>

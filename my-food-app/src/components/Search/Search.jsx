@@ -29,7 +29,7 @@ function Search() {
           onChange={handleChange}
           type="text"
           placeholder="type favorite meal"
-          className="form-input"
+          className="form-input dark:bg-gray-500"
           value={text}
         />
         <button type="submit" className="btn">

@@ -1,6 +1,7 @@
 import React from "react";
 import Home from "./pages/Home";
 import Foods from "./pages/Foods";
+import SelectedMeal from "./pages/SelectedMeal/SelectedMeal";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
@@ -11,6 +12,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Foods" element={<Foods />} />
+          <Route path="/selectedMeal:title" element={<SelectedMeal />} />
           {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </BrowserRouter>

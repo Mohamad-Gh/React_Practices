@@ -8,6 +8,7 @@ function AppProvider({ children }) {
   const [meals, setMeals] = useState([]);
   const [error, setError] = useState(null);
   const [term, setTerm] = useState("");
+  const [selectedMeal, setSelectedMeal] = useState(null);
 
   const fetchRandomMeal = async () => {
     setLoading(true);
@@ -53,7 +54,15 @@ function AppProvider({ children }) {
 
   return (
     <AppContext.Provider
-      value={{ meals, loading, error, setTerm, fetchRandomMeal }}
+      value={{
+        meals,
+        loading,
+        error,
+        setTerm,
+        fetchRandomMeal,
+        selectedMeal,
+        setSelectedMeal,
+      }}
     >
       {children}
     </AppContext.Provider>
