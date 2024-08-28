@@ -17,7 +17,7 @@ function Navbar() {
                 className="flex items-center gap-3 text-2xl sm:text-3xl font-bold"
               >
                 <img src={Logo} alt="logo" className="w-10" />
-                Foodie
+                Food Hut
               </Link>
             </div>
             <div className="flex items-center gap-4">

@@ -16,16 +16,16 @@ function SelectedMeal() {
     <div className="bg-white dark:bg-gray-900 dark:text-white duration-200">
       <Navbar />
       <aside className="">
+        <h2 className="py-4 px-4 font-bold">{title}</h2>
         <div className="">
           <img src={image} className="" />
-          <div className="">
-            <h4>{title}</h4>
-            <p>Cooking Instructions</p>
-            <p> {text}</p>
-            <a href={source} target="">
-              Original Source
-            </a>
-          </div>
+        </div>
+        <div className="">
+          <p>Cooking Instructions:</p>
+          <p> {text}</p>
+          <a href={source} target="">
+            Original Source
+          </a>
         </div>
       </aside>{" "}
       <Footer />
