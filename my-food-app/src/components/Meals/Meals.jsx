@@ -41,7 +41,7 @@ function Meals() {
           return (
             <article
               key={idMeal}
-              className="single-meal dark:bg-gray-900 text-white"
+              className="single-meal dark:bg-gray-900 dark:text-white"
             >
               <Link to="/selectedMeal:title">
                 <img
@@ -61,7 +61,7 @@ function Meals() {
                 >
                   <FaRegThumbsUp />
                 </button>
-                <p className="line-clamp-2 pt-2">{text}</p>
+                <p className="line-clamp-2 pt-2 dark:text-primary">{text}</p>
               </footer>
             </article>
           );
