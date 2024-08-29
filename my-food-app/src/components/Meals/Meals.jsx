@@ -4,7 +4,7 @@ import { FaRegThumbsUp } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 function Meals() {
-  const { meals, loading, setSelectedMeal } = useGlobalContext();
+  const { meals, loading, setSelectedMeal, addFavorite } = useGlobalContext();
   // const [loading, setLoading] = useState(false);
   // const [meals, setMeals] = useState([]);
 
@@ -31,28 +31,42 @@ function Meals() {
 
   return (
     <section className="section-center">
-      {meals.map(({ idMeal, strMeal: title, strMealThumb: image }) => {
-        return (
-          <article key={idMeal} className="single-meal">
-            <Link to="/selectedMeal:title">
-              <img
-                onClick={() => {
-                  setSelectedMeal(idMeal);
-                }}
-                src={image}
-                style={{ width: "200px" }}
-                className="img"
-              />
-            </Link>
-            <footer>
-              <h5>{title}</h5>
-              <button className="like-btn" onClick={() => addFavorite(idMeal)}>
-                <FaRegThumbsUp />
-              </button>
-            </footer>
-          </article>
-        );
-      })}
+      {meals.map(
+        ({
+          idMeal,
+          strMeal: title,
+          strMealThumb: image,
+          strInstructions: text,
+        }) => {
+          return (
+            <article
+              key={idMeal}
+              className="single-meal dark:bg-gray-900 text-white"
+            >
+              <Link to="/selectedMeal:title">
+                <img
+                  onClick={() => {
+                    setSelectedMeal(idMeal);
+                  }}
+                  src={image}
+                  style={{ width: "200px" }}
+                  className="img mx-auto"
+                />
+              </Link>
+              <footer>
+                <h5 className="font-bold">{title}</h5>
+                <button
+                  className="like-btn"
+                  onClick={() => addFavorite(idMeal)}
+                >
+                  <FaRegThumbsUp />
+                </button>
+                <p className="line-clamp-2 pt-2">{text}</p>
+              </footer>
+            </article>
+          );
+        }
+      )}
     </section>
   );
 }

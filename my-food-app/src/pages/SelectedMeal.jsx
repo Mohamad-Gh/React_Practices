@@ -1,7 +1,7 @@
 import React from "react";
-import { useGlobalContext } from "../../Context/Context";
-import Navbar from "../../components/Navbar/Navbar";
-import Footer from "../../components/Footer/Footer";
+import { useGlobalContext } from "../Context/Context";
+import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer/Footer";
 function SelectedMeal() {
   const { meals, selectedMeal } = useGlobalContext();
 

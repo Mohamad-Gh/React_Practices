@@ -4,11 +4,37 @@ import axios from "../Apis/Axios";
 const AppContext = createContext();
 
 function AppProvider({ children }) {
+  // checking page loading
   const [loading, setLoading] = useState(false);
+  // getting the meals list from API
   const [meals, setMeals] = useState([]);
+  // error statement
   const [error, setError] = useState(null);
+  // search term to look in meals list
   const [term, setTerm] = useState("");
+  // meal that is selected by user to read more about or order
   const [selectedMeal, setSelectedMeal] = useState(null);
+  // List of user favorite meals
+  const [favorites, setFavorites] = useState([]);
+  // JSON.parse(localStorage.getItem("favoriteList")) ??
+
+  const addFavorite = (id) => {
+    const newFavorite = meals.filter((meal) => meal.idMeal === id);
+    // check to see if user has already added the meal to the favorite
+    console.log(favorites.includes(newFavorite[0]));
+    if (!favorites.includes(newFavorite[0])) {
+      setFavorites((prvs) => [...prvs, newFavorite[0]]);
+    } else return;
+  };
+
+  const removeFavorite = (id) => {
+    const newFavorites = favorites.filter((item) => item.idMeal !== id);
+    setFavorites(newFavorites);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("favoriteList", JSON.stringify(favorites));
+  }, [favorites]);
 
   const fetchRandomMeal = async () => {
     setLoading(true);
@@ -62,6 +88,9 @@ function AppProvider({ children }) {
         fetchRandomMeal,
         selectedMeal,
         setSelectedMeal,
+        favorites,
+        addFavorite,
+        removeFavorite,
       }}
     >
       {children}

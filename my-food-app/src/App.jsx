@@ -1,7 +1,7 @@
 import React from "react";
 import Home from "./pages/Home";
 import Foods from "./pages/Foods";
-import SelectedMeal from "./pages/SelectedMeal/SelectedMeal";
+import SelectedMeal from "./pages/SelectedMeal";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
