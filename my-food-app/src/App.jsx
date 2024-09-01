@@ -12,7 +12,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Foods" element={<Foods />} />
-          <Route path="/selectedMeal:title" element={<SelectedMeal />} />
+          <Route path="Foods/:mealTitle" element={<SelectedMeal />} />
           {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </BrowserRouter>

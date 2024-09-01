@@ -1,7 +1,7 @@
 import React from "react";
 import { useGlobalContext } from "../../Context/Context";
 import { FaRegThumbsUp } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Meals() {
   const { meals, loading, setSelectedMeal, addFavorite } = useGlobalContext();
@@ -21,7 +21,7 @@ function Meals() {
   //   };
   //   fetchData();
   // }, []);
-
+  const navigate = useNavigate();
   if (loading) {
     return <h1>Loading ...</h1>;
   }
@@ -43,16 +43,17 @@ function Meals() {
               key={idMeal}
               className="single-meal dark:bg-gray-900 dark:text-white"
             >
-              <Link to="/selectedMeal:title">
-                <img
-                  onClick={() => {
-                    setSelectedMeal(idMeal);
-                  }}
-                  src={image}
-                  style={{ width: "200px" }}
-                  className="img mx-auto"
-                />
-              </Link>
+              {/* <Link to={navigate(`/selectedMeal/${title}`)}> */}
+              <img
+                onClick={() => {
+                  setSelectedMeal(idMeal);
+                  navigate(`${title}`);
+                }}
+                src={image}
+                style={{ width: "200px" }}
+                className="img mx-auto"
+              />
+              {/* </Link> */}
               <footer>
                 <h5 className="font-bold">{title}</h5>
                 <button

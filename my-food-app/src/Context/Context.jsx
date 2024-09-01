@@ -21,13 +21,14 @@ function AppProvider({ children }) {
 
   const addFavorite = (id) => {
     const newFavorite = meals.find((meal) => meal.idMeal === id);
-    const updatedFavorite = favorites.find((meal) => meal.idMeal === id);
+    const favoriteCheck = favorites.some((meal) => meal.idMeal === id);
+    // const favoriteCheck = favorites.find((meal) => meal.idMeal === id);
 
-    if (updatedFavorite) return;
     // check to see if user has already added the meal to the favorite
-    // if (!favorites.include(newFavorite)) {
+
+    console.log(favoriteCheck);
+    if (favoriteCheck) return;
     setFavorites((prvs) => [...prvs, newFavorite]);
-    // } else return;
   };
 
   const removeFavorite = (id) => {
