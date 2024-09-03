@@ -68,11 +68,13 @@ function AppProvider({ children }) {
   const fetchMeals = async () => {
     setLoading(true);
     try {
+      // search the term
       if (term !== "") {
         const { data } = await axios.get(`/search.php?s=${term}`);
         setMeals(data.meals);
         setLoading(false);
       } else {
+        // load everything
         const { data } = await axios.get(`/search.php?s=`);
         setMeals(data.meals);
         setLoading(false);
