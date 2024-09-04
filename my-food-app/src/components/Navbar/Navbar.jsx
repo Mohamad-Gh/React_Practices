@@ -60,10 +60,12 @@ function Navbar() {
                   </a>
                 </li>
               </ul>
-              <button className="flex items-center gap-1 bg-gradient-to-r from-primary to-secondary text-white px-4 py-1 rounded-full hover:scale-105 duration-300 ">
-                Order
-                <FaCartShopping className="text-xl drop-shadow-sm cursor-pointer" />
-              </button>
+              <Link to={"/Order"}>
+                <button className="flex items-center gap-1 bg-gradient-to-r from-primary to-secondary text-white px-4 py-1 rounded-full hover:scale-105 duration-300 ">
+                  Order
+                  <FaCartShopping className="text-xl drop-shadow-sm cursor-pointer" />
+                </button>
+              </Link>
             </div>
           </div>
         </div>

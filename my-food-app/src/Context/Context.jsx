@@ -18,6 +18,8 @@ function AppProvider({ children }) {
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favoriteList")) || []
   );
+  //list of cards item
+  const [currentOrder, setCurrentOrder] = useState([]);
 
   const addFavorite = (id) => {
     const newFavorite = meals.find((meal) => meal.idMeal === id);
@@ -26,11 +28,34 @@ function AppProvider({ children }) {
 
     // check to see if user has already added the meal to the favorite
 
-    console.log(favoriteCheck);
     if (favoriteCheck) return;
     setFavorites((prvs) => [...prvs, newFavorite]);
   };
 
+  const order = (id) => {
+    let cardItem = meals.find((meal) => meal.idMeal === id);
+
+    setCurrentOrder((prevOrder) => {
+      const index = prevOrder.findIndex((item) => item.idMeal === id);
+
+      if (index !== -1) {
+        // Item exists, update quantity
+        const updatedItem = {
+          ...prevOrder[index],
+          orderQuantity: prevOrder[index].orderQuantity + 1,
+        };
+        return [
+          ...prevOrder.slice(0, index),
+          updatedItem,
+          ...prevOrder.slice(index + 1),
+        ];
+      } else {
+        // Item doesn't exist, add it with quantity 1
+        return [...prevOrder, { ...cardItem, orderQuantity: 1 }];
+      }
+    });
+  };
+  console.log("currentOrder", currentOrder);
   const removeFavorite = (id) => {
     const newFavorites = favorites.filter((item) => item.idMeal !== id);
     setFavorites(newFavorites);
@@ -106,6 +131,8 @@ function AppProvider({ children }) {
         favorites,
         addFavorite,
         removeFavorite,
+        order,
+        currentOrder,
       }}
     >
       {children}
