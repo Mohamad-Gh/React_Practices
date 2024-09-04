@@ -33,13 +33,13 @@ function AppProvider({ children }) {
   };
 
   const order = (id) => {
-    let cardItem = meals.find((meal) => meal.idMeal === id);
+    const cardItem = meals.find((meal) => meal.idMeal === id);
 
     setCurrentOrder((prevOrder) => {
       const index = prevOrder.findIndex((item) => item.idMeal === id);
 
       if (index !== -1) {
-        // Item exists, update quantity
+        //item exists, update quantity
         const updatedItem = {
           ...prevOrder[index],
           orderQuantity: prevOrder[index].orderQuantity + 1,
@@ -50,11 +50,11 @@ function AppProvider({ children }) {
           ...prevOrder.slice(index + 1),
         ];
       } else {
-        // Item doesn't exist, add it with quantity 1
         return [...prevOrder, { ...cardItem, orderQuantity: 1 }];
       }
     });
   };
+
   console.log("currentOrder", currentOrder);
   const removeFavorite = (id) => {
     const newFavorites = favorites.filter((item) => item.idMeal !== id);
