@@ -2,6 +2,8 @@ import React from "react";
 import { useGlobalContext } from "../../Context/Context";
 import { FaRegThumbsUp } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 function Meals() {
   const { order } = useGlobalContext();
@@ -64,10 +66,15 @@ function Meals() {
                 >
                   <FaRegThumbsUp />
                 </button>
-                <button className="like-btn" onClick={() => order(idMeal)}>
-                  Order
+                <IconButton
+                  color="warning"
+                  aria-label="add to shopping cart"
+                  className="like-btn hover:text-green-500"
+                  onClick={() => order(idMeal)}
+                >
                   {/* <span>{card?.[idMeal]?.number || 0}</span> */}
-                </button>
+                  <AddShoppingCartIcon />
+                </IconButton>
                 <p className="line-clamp-2 pt-2 dark:text-primary">{text}</p>
               </footer>
             </article>
