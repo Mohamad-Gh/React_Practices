@@ -1,14 +1,9 @@
 import React from "react";
 import { useGlobalContext } from "../../Context/Context";
-import { FaRegThumbsUp } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-import IconButton from "@mui/material/IconButton";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import Like from "../Icons/Like";
-
+import Card from "../Card/Card";
 function Meals() {
-  const { meals, loading, setSelectedMeal, addFavorite, order } =
-    useGlobalContext();
+  const { meals, favorites, loading } = useGlobalContext();
   // const [loading, setLoading] = useState(false);
   // const [meals, setMeals] = useState([]);
 
@@ -25,7 +20,6 @@ function Meals() {
   //   };
   //   fetchData();
   // }, []);
-  const navigate = useNavigate();
   if (loading) {
     return <h1>Loading ...</h1>;
   }
@@ -47,8 +41,14 @@ function Meals() {
               key={idMeal}
               className="single-meal dark:bg-gray-900 dark:text-white"
             >
-              {/* <Link to={navigate(`/selectedMeal/${title}`)}> */}
-              <img
+              <Card
+                image={image}
+                title={title}
+                description={text}
+                id={idMeal}
+                state={favorites.some((item) => item.idMeal === idMeal)}
+              />
+              {/* <img
                 onClick={() => {
                   setSelectedMeal(idMeal);
                   navigate(`${title}`);
@@ -56,15 +56,14 @@ function Meals() {
                 src={image}
                 style={{ width: "200px" }}
                 className="img mx-auto"
-              />
-              {/* </Link> */}
-              <footer>
+              /> */}
+              {/* <footer>
                 <h5 className="font-bold">{title}</h5>
                 <button
                   className="like-btn"
                   onClick={() => addFavorite(idMeal)}
                 >
-                  {/* <FaRegThumbsUp /> */}
+                  <FaRegThumbsUp />
                   <Like />
                 </button>
                 <IconButton
@@ -73,11 +72,11 @@ function Meals() {
                   className="like-btn hover:text-green-500"
                   onClick={() => order(idMeal)}
                 >
-                  {/* <span>{card?.[idMeal]?.number || 0}</span> */}
+                  <span>{card?.[idMeal]?.number || 0}</span>
                   <AddShoppingCartIcon />
                 </IconButton>
                 <p className="line-clamp-2 pt-2 dark:text-primary">{text}</p>
-              </footer>
+              </footer> */}
             </article>
           );
         }
