@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../../assets/food-logo.png";
 import { Link } from "react-router-dom";
 import DarkMode from "./DarkMode";
 
 import { FaCartShopping } from "react-icons/fa6";
+import { useGlobalContext } from "../../Context/Context";
 
 function Navbar() {
+  const { currentOrder } = useGlobalContext();
   return (
     <>
       <div className="shadow-md bg-white dark:bg-gray-900 dark:text-white duration-200 ">
@@ -61,9 +63,14 @@ function Navbar() {
                 </li>
               </ul>
               <Link to={"/Order"}>
-                <button className="flex items-center gap-1 bg-gradient-to-r from-primary to-secondary text-white px-4 py-1 rounded-full hover:scale-105 duration-300 ">
+                <button className="flex items-center gap-1 bg-gradient-to-r from-primary to-secondary text-white px-4 py-1 rounded-full relative hover:scale-105 duration-300 ">
                   Cart
                   <FaCartShopping className="text-xl drop-shadow-sm cursor-pointer" />
+                  {currentOrder.length > 0 ? (
+                    <span className="flex justify-center items-center absolute bottom-4 left-20 bg-blue-400 rounded-full w-5 h-5">
+                      {currentOrder.length}
+                    </span>
+                  ) : null}
                 </button>
               </Link>
             </div>

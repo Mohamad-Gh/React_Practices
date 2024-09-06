@@ -5,8 +5,8 @@ function Like() {
   const { darkModeTheme } = useGlobalContext();
 
   return (
-    <div class="overflow-x-visible relative w-10 h-10 overflow-y-clip group text-center">
-      <div class="flex justify-center items-center w-10 h-10 rounded-full transition-all duration-300 absolute top-0 group-hover:scale-[.60] group-hover:origin-top text-black dark:text-white">
+    <div className="overflow-x-visible relative w-10 h-10 overflow-y-clip group text-center">
+      <div className="flex justify-center items-center w-10 h-10 rounded-full transition-all duration-300 absolute top-0 group-hover:scale-[.60] group-hover:origin-top text-black dark:text-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="26.463"
@@ -25,9 +25,9 @@ function Like() {
               transform="translate(-1.088 -0.541)"
               fill="none"
               stroke={darkModeTheme == "dark" ? "#fff" : "#000"}
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="3"
             ></path>
             <path
               id="Trazado_28220"
@@ -36,14 +36,14 @@ function Like() {
               transform="translate(-2 -2)"
               fill="none"
               stroke={darkModeTheme == "dark" ? "#fff" : "#000"}
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="3"
             ></path>
           </g>
         </svg>
       </div>
-      <div class="absolute text-white font-bold -bottom-10 left-1/2 text-sm text-center text-black whitespace-nowrap transition-all duration-300 transform -translate-x-1/2 group-hover:bottom-0 dark:text-white">
+      <div className="absolute text-white font-bold -bottom-10 left-1/2 text-sm text-center text-black whitespace-nowrap transition-all duration-300 transform -translate-x-1/2 group-hover:bottom-0 dark:text-white">
         Like
       </div>
     </div>
