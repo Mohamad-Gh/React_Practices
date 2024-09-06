@@ -288,8 +288,12 @@
   cursor: pointer;
 }
 
-.card .button-container .button:hover {
-  background: orangered;
+.button-container .cart-button:hover {
+  background: rgb(109, 255, 47);
+}
+
+.button-container .buy-button:hover {
+  background: rgb(64, 47, 255);
 }
 
 .card .button-container .buy-button {
