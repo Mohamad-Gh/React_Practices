@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import lightPng from "../../assets/website/light-mode-button.png";
 import darkPng from "../../assets/website/dark-mode-button.png";
+import { useGlobalContext } from "../../Context/Context";
 
 function DarkMode() {
-  const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
-  const [darkModeTheme, setDarkModeTheme] = useState(
-    prefersDarkScheme.matches ? "dark" : "light"
-  );
+  const { darkModeTheme, setDarkModeTheme } = useGlobalContext();
 
   useEffect(() => {
     const element = document.documentElement;

@@ -4,6 +4,12 @@ import axios from "../Apis/Axios";
 const AppContext = createContext();
 
 function AppProvider({ children }) {
+  // setting dark mode
+  const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+  const [darkModeTheme, setDarkModeTheme] = useState(
+    prefersDarkScheme.matches ? "dark" : "light"
+  );
+
   // checking page loading
   const [loading, setLoading] = useState(false);
   // getting the meals list from API
@@ -133,6 +139,8 @@ function AppProvider({ children }) {
         removeFavorite,
         order,
         currentOrder,
+        darkModeTheme,
+        setDarkModeTheme,
       }}
     >
       {children}

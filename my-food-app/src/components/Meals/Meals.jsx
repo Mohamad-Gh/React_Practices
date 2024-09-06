@@ -4,10 +4,10 @@ import { FaRegThumbsUp } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import Like from "../Icons/Like";
 
 function Meals() {
-  const { order } = useGlobalContext();
-  const { meals, loading, setSelectedMeal, addFavorite, addCard } =
+  const { meals, loading, setSelectedMeal, addFavorite, order } =
     useGlobalContext();
   // const [loading, setLoading] = useState(false);
   // const [meals, setMeals] = useState([]);
@@ -64,7 +64,8 @@ function Meals() {
                   className="like-btn"
                   onClick={() => addFavorite(idMeal)}
                 >
-                  <FaRegThumbsUp />
+                  {/* <FaRegThumbsUp /> */}
+                  <Like />
                 </button>
                 <IconButton
                   color="warning"

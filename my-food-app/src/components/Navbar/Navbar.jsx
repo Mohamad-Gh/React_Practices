@@ -62,7 +62,7 @@ function Navbar() {
               </ul>
               <Link to={"/Order"}>
                 <button className="flex items-center gap-1 bg-gradient-to-r from-primary to-secondary text-white px-4 py-1 rounded-full hover:scale-105 duration-300 ">
-                  Order
+                  Cart
                   <FaCartShopping className="text-xl drop-shadow-sm cursor-pointer" />
                 </button>
               </Link>
