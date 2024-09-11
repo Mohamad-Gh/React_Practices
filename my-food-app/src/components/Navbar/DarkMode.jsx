@@ -26,7 +26,7 @@ function DarkMode() {
       : null;
   };
   return (
-    <label onChange={changeTheme} class=" switch">
+    <label onChange={changeTheme} className=" switch">
       <span className="sun">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <g fill="#ffd43b">
@@ -42,10 +42,10 @@ function DarkMode() {
       </span>
       <input
         type="checkbox"
-        class="input"
+        className="input"
         checked={darkModeTheme === "light"}
       />
-      <span class="slider"></span>
+      <span className="slider"></span>
     </label>
     // <button className="flex items-center" onClick={changeTheme}>
     //   <img

@@ -27,6 +27,7 @@ function AppProvider({ children }) {
   //list of cards item
   const [currentOrder, setCurrentOrder] = useState([]);
 
+  // add to favorite list
   const addFavorite = (id) => {
     const newFavorite = meals.find((meal) => meal.idMeal === id);
     const favoriteCheck = favorites.some((meal) => meal.idMeal === id);
@@ -38,6 +39,8 @@ function AppProvider({ children }) {
     setFavorites((prvs) => [...prvs, newFavorite]);
   };
 
+  // check the item and add it to the current order
+  // If double clicked it will add to the quantity of that item.
   const order = (id) => {
     const cardItem = meals.find((meal) => meal.idMeal === id);
 
@@ -51,17 +54,25 @@ function AppProvider({ children }) {
           orderQuantity: prevOrder[index].orderQuantity + 1,
         };
         return [
+          // cut the array and put the updated version instead
           ...prevOrder.slice(0, index),
           updatedItem,
           ...prevOrder.slice(index + 1),
         ];
       } else {
+        // add the new item with quantity of 1
         return [...prevOrder, { ...cardItem, orderQuantity: 1 }];
       }
     });
   };
 
-  console.log("currentOrder", currentOrder);
+  // remove items from current order
+
+  const removeOrder = (id) => {
+    const newOrder = currentOrder.filter((item) => item.idMeal !== id);
+    setCurrentOrder(newOrder);
+  };
+
   const removeFavorite = (id) => {
     const newFavorites = favorites.filter((item) => item.idMeal !== id);
     setFavorites(newFavorites);
@@ -69,16 +80,7 @@ function AppProvider({ children }) {
 
   useEffect(() => {
     localStorage.setItem("favoriteList", JSON.stringify(favorites));
-    // console.log(
-    //   "localstorage in context",
-    //   JSON.parse(localStorage.getItem("favoriteList"))
-    // );
   }, [favorites]);
-
-  // console.log(
-  //   "localstorage in context",
-  //   JSON.parse(localStorage.getItem("favoriteList"))
-  // );
 
   const fetchRandomMeal = async () => {
     setLoading(true);
@@ -141,6 +143,7 @@ function AppProvider({ children }) {
         currentOrder,
         darkModeTheme,
         setDarkModeTheme,
+        removeOrder,
       }}
     >
       {children}

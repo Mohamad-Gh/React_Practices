@@ -1,6 +1,6 @@
 import React from "react";
 import { useGlobalContext } from "../../Context/Context";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Card from "../Card/Card";
 function Meals() {
   const { meals, favorites, loading } = useGlobalContext();

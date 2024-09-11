@@ -32,6 +32,7 @@ function Card({
       </div>
       <label className="favorite">
         <input
+          // state true or false to check either meal is in favorite list or not
           checked={state}
           type="checkbox"
           onClick={() => addFavorite(id)}
