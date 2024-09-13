@@ -1,7 +1,16 @@
 import React from "react";
 import GiftVoucher from "./GiftVoucher";
+import { Link } from "react-router-dom";
 
-function OrderSummary() {
+function OrderSummary({ price }) {
+  let saving = 99.99;
+  let pickUpCost = 99;
+  let tax = (price + pickUpCost - saving) * 0.12;
+  if (price == 0) {
+    saving = 0;
+    pickUpCost = 0;
+    tax = 0;
+  }
   return (
     <div className="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
       <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
@@ -16,7 +25,7 @@ function OrderSummary() {
                 Original price
               </dt>
               <dd className="text-base font-medium text-gray-900 dark:text-white">
-                $7,592.00
+                ${price}
               </dd>
             </dl>
 
@@ -24,7 +33,9 @@ function OrderSummary() {
               <dt className="text-base font-normal text-gray-500 dark:text-gray-400">
                 Savings
               </dt>
-              <dd className="text-base font-medium text-green-600">-$299.00</dd>
+              <dd className="text-base font-medium text-green-600">
+                -${saving}
+              </dd>
             </dl>
 
             <dl className="flex items-center justify-between gap-4">
@@ -32,7 +43,7 @@ function OrderSummary() {
                 Store Pickup
               </dt>
               <dd className="text-base font-medium text-gray-900 dark:text-white">
-                $99
+                ${pickUpCost}
               </dd>
             </dl>
 
@@ -41,7 +52,7 @@ function OrderSummary() {
                 Tax
               </dt>
               <dd className="text-base font-medium text-gray-900 dark:text-white">
-                $799
+                ${tax.toFixed(2)}
               </dd>
             </dl>
           </div>
@@ -51,7 +62,7 @@ function OrderSummary() {
               Total
             </dt>
             <dd className="text-base font-bold text-gray-900 dark:text-white">
-              $8,191.00
+              $ {(tax + price + pickUpCost - saving).toFixed(2)}
             </dd>
           </dl>
         </div>
@@ -68,9 +79,8 @@ function OrderSummary() {
             {" "}
             or{" "}
           </span>
-          <a
-            href="#"
-            title=""
+          <Link
+            to="/Foods"
             className="inline-flex items-center gap-2 text-sm font-medium text-third-700 underline hover:no-underline dark:text-third-500"
           >
             Continue Shopping
@@ -89,7 +99,7 @@ function OrderSummary() {
                 d="M19 12H5m14 0-4 4m4-4-4-4"
               />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
       <GiftVoucher />

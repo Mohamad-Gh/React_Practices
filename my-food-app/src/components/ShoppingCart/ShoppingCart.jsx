@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import ShoopingCartItem from "./ShoopingCartItem";
 import OrderSummary from "./OrderSummary";
 import { useGlobalContext } from "../../Context/Context";
+import { Link } from "react-router-dom";
 
 import ShoppingSuggestions from "./ShoppingSuggestions";
 
 function ShoppingCart() {
-  const { currentOrder } = useGlobalContext();
+  const { currentOrder, price } = useGlobalContext();
   return (
     <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
@@ -31,19 +32,31 @@ function ShoppingCart() {
                       key={id}
                       id={id}
                       title={title}
-                      price={100.99}
+                      price={99.99}
                       quantity={quantity}
                       image={image}
                     />
                   );
+                  {
+                  }
                 })
               ) : (
-                <h2>No Order Found</h2>
+                <div>
+                  <h2>No Order Found</h2>
+                  <p>
+                    Our Meals Are{" "}
+                    <Link to="/Foods">
+                      <span className="text-primary hover:font-bold duration-300">
+                        Here
+                      </span>
+                    </Link>
+                  </p>
+                </div>
               )}
             </div>
             <ShoppingSuggestions />
           </div>
-          <OrderSummary />
+          <OrderSummary price={price} />
         </div>
       </div>
     </section>

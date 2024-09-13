@@ -27,6 +27,9 @@ function AppProvider({ children }) {
   //list of cards item
   const [currentOrder, setCurrentOrder] = useState([]);
 
+  // Setting the price of the current order
+  const [price, setPrice] = useState(0);
+
   // add to favorite list
   const addFavorite = (id) => {
     const newFavorite = meals.find((meal) => meal.idMeal === id);
@@ -81,6 +84,10 @@ function AppProvider({ children }) {
   useEffect(() => {
     localStorage.setItem("favoriteList", JSON.stringify(favorites));
   }, [favorites]);
+
+  useEffect(() => {
+    setPrice(currentOrder.length * 99.99);
+  }, [currentOrder]);
 
   const fetchRandomMeal = async () => {
     setLoading(true);
@@ -144,6 +151,7 @@ function AppProvider({ children }) {
         darkModeTheme,
         setDarkModeTheme,
         removeOrder,
+        price,
       }}
     >
       {children}

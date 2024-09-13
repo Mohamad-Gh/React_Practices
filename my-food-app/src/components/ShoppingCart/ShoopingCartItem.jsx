@@ -9,7 +9,7 @@ function ShoopingCartItem({ title, price, id, quantity, image }) {
       <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
         <a href="#" className="shrink-0 md:order-1">
           <img
-            className="hidden h-20 w-20 dark:block"
+            className="h-20 w-20 block"
             src={image}
             alt={`image of ${image}`}
           />
